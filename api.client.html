@@ -7,9 +7,9 @@
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="api.html"><font color="#ffffff">api</font></a>.client</strong></big></big> (version 1.0.0)</font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="api.html"><font color="#ffffff">api</font></a>.client</strong></big></big> (version 1.1.0)</font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href="index.html">index</a><br><a href="https://github.com/onelogin/onelogin-python-sdk/tree/1.0.0/src/onelogin/api/client.py">onelogin/api/client.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href="index.html">index</a><br><a href="https://github.com/onelogin/onelogin-python-sdk/tree/1.1.0/src/onelogin/api/client.py">onelogin/api/client.py</a></font></td></tr></table>
     <p><tt><a href="#OneLoginClient">OneLoginClient</a>&nbsp;class<br>
 &nbsp;<br>
 Copyright&nbsp;(c)&nbsp;2017,&nbsp;OneLogin,&nbsp;Inc.<br>
@@ -56,6 +56,20 @@ at&nbsp;https://developers.onelogin.com/api-docs/1/getting-started/dev-overview.
 &nbsp;<br>
 :param&nbsp;path:&nbsp;Path&nbsp;where&nbsp;the&nbsp;sdk&nbsp;config&nbsp;file&nbsp;is&nbsp;located.<br>
 :type&nbsp;path:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-activate_factor"><strong>activate_factor</strong></a>(self, user_id, device_id)</dt><dd><tt>Triggers&nbsp;an&nbsp;SMS&nbsp;or&nbsp;Push&nbsp;notification&nbsp;containing&nbsp;a&nbsp;One-Time&nbsp;Password&nbsp;(OTP)<br>
+that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;authenticate&nbsp;a&nbsp;user&nbsp;with&nbsp;the&nbsp;Verify&nbsp;Factor&nbsp;call.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;device_id&nbsp;of&nbsp;the&nbsp;MFA&nbsp;device.<br>
+:type&nbsp;device_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;Info&nbsp;with&nbsp;User&nbsp;Id,&nbsp;Device&nbsp;Id,&nbsp;and&nbsp;otp_device<br>
+:rtype:&nbsp;FactorEnrollmentResponse<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/activate-factor&nbsp;Activate&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
 
 <dl><dt><a name="OneLoginClient-assign_role_to_user"><strong>assign_role_to_user</strong></a>(self, user_id, role_ids)</dt><dd><tt>Assigns&nbsp;Roles&nbsp;to&nbsp;User<br>
 &nbsp;<br>
@@ -108,6 +122,17 @@ Returns&nbsp;a&nbsp;session&nbsp;token<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/users/create-session-login-token&nbsp;Create&nbsp;Session&nbsp;Login&nbsp;Token&nbsp;documentation</tt></dd></dl>
 
+<dl><dt><a name="OneLoginClient-create_session_via_token"><strong>create_session_via_token</strong></a>(self, session_token)</dt><dd><tt>Post&nbsp;a&nbsp;session&nbsp;token&nbsp;to&nbsp;this&nbsp;API&nbsp;endpoint&nbsp;to&nbsp;start&nbsp;a&nbsp;session&nbsp;and&nbsp;set&nbsp;a&nbsp;cookie&nbsp;to&nbsp;log&nbsp;a&nbsp;user&nbsp;into&nbsp;an&nbsp;app.<br>
+&nbsp;<br>
+:param&nbsp;session_token:&nbsp;The&nbsp;session&nbsp;token<br>
+:type&nbsp;session_token:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;Header&nbsp;'Set-Cookie'&nbsp;value<br>
+:return:&nbsp;return&nbsp;the&nbsp;'Set-Cookie'&nbsp;value&nbsp;of&nbsp;the&nbsp;HTTP&nbsp;Header&nbsp;if&nbsp;any<br>
+:rtype:&nbsp;string<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/login-page/create-session-via-token&nbsp;Create&nbsp;Session&nbsp;Via&nbsp;API&nbsp;Token&nbsp;documentation</tt></dd></dl>
+
 <dl><dt><a name="OneLoginClient-create_user"><strong>create_user</strong></a>(self, user_params)</dt><dd><tt>Creates&nbsp;an&nbsp;user<br>
 &nbsp;<br>
 :param&nbsp;user_params:&nbsp;User&nbsp;data&nbsp;(firstname,&nbsp;lastname,&nbsp;email,&nbsp;username,&nbsp;company,<br>
@@ -134,6 +159,25 @@ Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
 :rtype:&nbsp;bool<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/users/delete-user&nbsp;Delete&nbsp;User&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-enroll_factor"><strong>enroll_factor</strong></a>(self, user_id, factor_id, display_name, number)</dt><dd><tt>Enroll&nbsp;a&nbsp;user&nbsp;with&nbsp;a&nbsp;given&nbsp;authentication&nbsp;factor.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;factor_id:&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;factor&nbsp;to&nbsp;enroll&nbsp;the&nbsp;user&nbsp;with.<br>
+:type&nbsp;factor_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;display_name:&nbsp;A&nbsp;name&nbsp;for&nbsp;the&nbsp;users&nbsp;device.<br>
+:type&nbsp;display_name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;number:&nbsp;The&nbsp;phone&nbsp;number&nbsp;of&nbsp;the&nbsp;user&nbsp;in&nbsp;E.164&nbsp;format..<br>
+:type&nbsp;number:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;MFA&nbsp;device<br>
+:rtype:&nbsp;OTP_Device<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enroll-factor&nbsp;Enroll&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
 
 <dl><dt><a name="OneLoginClient-extract_error_message_from_response"><strong>extract_error_message_from_response</strong></a>(self, response)</dt></dl>
 
@@ -185,6 +229,16 @@ Returns&nbsp;the&nbsp;embed&nbsp;apps<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/embed-apps/get-apps-to-embed-for-a-user&nbsp;Get&nbsp;Apps&nbsp;to&nbsp;Embed&nbsp;for&nbsp;a&nbsp;User&nbsp;documentation</tt></dd></dl>
 
+<dl><dt><a name="OneLoginClient-get_enrolled_factors"><strong>get_enrolled_factors</strong></a>(self, user_id)</dt><dd><tt>Enroll&nbsp;a&nbsp;user&nbsp;with&nbsp;a&nbsp;given&nbsp;authentication&nbsp;factor.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;OTP_Device&nbsp;list<br>
+:rtype:&nbsp;array<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enrolled-factors&nbsp;Get&nbsp;Enrolled&nbsp;Authentication&nbsp;Factors&nbsp;documentation</tt></dd></dl>
+
 <dl><dt><a name="OneLoginClient-get_event"><strong>get_event</strong></a>(self, event_id)</dt><dd><tt>Gets&nbsp;Event&nbsp;by&nbsp;ID.<br>
 &nbsp;<br>
 :param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;Event<br>
@@ -217,6 +271,16 @@ Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;events<br>
 :rtype:&nbsp;array<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/events/get-events&nbsp;Get&nbsp;Events&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_factors"><strong>get_factors</strong></a>(self, user_id)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;authentication&nbsp;factors&nbsp;that&nbsp;are&nbsp;available&nbsp;for&nbsp;user&nbsp;enrollment&nbsp;via&nbsp;API.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;AuthFactor&nbsp;list<br>
+:rtype:&nbsp;array<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/available-factors&nbsp;Get&nbsp;Available&nbsp;Authentication&nbsp;Factors&nbsp;documentation</tt></dd></dl>
 
 <dl><dt><a name="OneLoginClient-get_group"><strong>get_group</strong></a>(self, group_id)</dt><dd><tt>Gets&nbsp;Group&nbsp;by&nbsp;ID.<br>
 &nbsp;<br>
@@ -338,7 +402,7 @@ Returns&nbsp;a&nbsp;session&nbsp;token<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/users/verify-factor&nbsp;Verify&nbsp;Factor&nbsp;documentation</tt></dd></dl>
 
-<dl><dt><a name="OneLoginClient-get_url"><strong>get_url</strong></a>(self, base, obj_id<font color="#909090">=None</font>)</dt></dl>
+<dl><dt><a name="OneLoginClient-get_url"><strong>get_url</strong></a>(self, base, obj_id<font color="#909090">=None</font>, extra_id<font color="#909090">=None</font>)</dt></dl>
 
 <dl><dt><a name="OneLoginClient-get_user"><strong>get_user</strong></a>(self, user_id)</dt><dd><tt>Gets&nbsp;User&nbsp;by&nbsp;ID.<br>
 &nbsp;<br>
@@ -544,6 +608,31 @@ Returns&nbsp;the&nbsp;modified&nbsp;user<br>
 &nbsp;<br>
 See&nbsp;https://developers.onelogin.com/api-docs/1/users/update-user&nbsp;Update&nbsp;User&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
 
+<dl><dt><a name="OneLoginClient-verify_factor"><strong>verify_factor</strong></a>(self, user_id, device_id, otp_token<font color="#909090">=None</font>, state_token<font color="#909090">=None</font>)</dt><dd><tt>Triggers&nbsp;an&nbsp;SMS&nbsp;or&nbsp;Push&nbsp;notification&nbsp;containing&nbsp;a&nbsp;One-Time&nbsp;Password&nbsp;(OTP)<br>
+that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;authenticate&nbsp;a&nbsp;user&nbsp;with&nbsp;the&nbsp;Verify&nbsp;Factor&nbsp;call.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;device_id&nbsp;of&nbsp;the&nbsp;MFA&nbsp;device.<br>
+:type&nbsp;device_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;otp_token:&nbsp;OTP&nbsp;code&nbsp;provided&nbsp;by&nbsp;the&nbsp;device&nbsp;or&nbsp;SMS&nbsp;message&nbsp;sent&nbsp;to&nbsp;user.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;a&nbsp;device&nbsp;like&nbsp;OneLogin&nbsp;Protect&nbsp;that&nbsp;supports&nbsp;Push&nbsp;has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;been&nbsp;used&nbsp;you&nbsp;do&nbsp;not&nbsp;need&nbsp;to&nbsp;provide&nbsp;the&nbsp;otp_token.<br>
+:type&nbsp;otp_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;The&nbsp;state_token&nbsp;is&nbsp;returned&nbsp;after&nbsp;a&nbsp;successful&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;Enroll&nbsp;a&nbsp;Factor&nbsp;or&nbsp;Activate&nbsp;a&nbsp;Factor.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;be&nbsp;provided&nbsp;if&nbsp;the&nbsp;needs_trigger&nbsp;attribute&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;proceeding&nbsp;calls&nbsp;is&nbsp;set&nbsp;to&nbsp;true.<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;Info&nbsp;with&nbsp;User&nbsp;Id,&nbsp;Device&nbsp;Id,&nbsp;and&nbsp;otp_device<br>
+:rtype:&nbsp;FactorEnrollmentResponse<br>
+&nbsp;<br>
+See&nbsp;@see&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/activate-factor&nbsp;Activate&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
+
 <hr>
 Data descriptors defined here:<br>
 <dl><dt><strong>__dict__</strong></dt>
@@ -554,7 +643,7 @@ Data descriptors defined here:<br>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>CUSTOM_USER_AGENT</strong> = 'onelogin-python-sdk 1.0.0'</dl>
+<dl><dt><strong>CUSTOM_USER_AGENT</strong> = 'onelogin-python-sdk 1.1.0'</dl>
 
 <dl><dt><strong>client_id</strong> = None</dl>
 
@@ -567,5 +656,5 @@ Data and other attributes defined here:<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>__version__</strong> = '1.0.0'</td></tr></table>
+<td width="100%"><strong>__version__</strong> = '1.1.0'</td></tr></table>
 </body></html>
