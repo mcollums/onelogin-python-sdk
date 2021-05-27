@@ -1,0 +1,1945 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module api.client</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="api.html"><font color="#ffffff">api</font></a>.client</strong></big></big> (version 2.0.0)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/pitbulk/proyectos/onelogin-python-sdk/src/onelogin/api/client.py">/home/pitbulk/proyectos/onelogin-python-sdk/src/onelogin/api/client.py</a></font></td></tr></table>
+    <p><tt><a href="#OneLoginClient">OneLoginClient</a>&nbsp;class<br>
+&nbsp;<br>
+Copyright&nbsp;(c)&nbsp;2021,&nbsp;OneLogin,&nbsp;Inc.<br>
+All&nbsp;rights&nbsp;reserved.<br>
+&nbsp;<br>
+<a href="#OneLoginClient">OneLoginClient</a>&nbsp;class&nbsp;of&nbsp;the&nbsp;OneLogin's&nbsp;Python&nbsp;SDK.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="base64.html">base64</a><br>
+</td><td width="25%" valign=top><a href="datetime.html">datetime</a><br>
+</td><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top><a href="dateutil.tz.html">dateutil.tz</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="api.client.html#OneLoginClient">OneLoginClient</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OneLoginClient">class <strong>OneLoginClient</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;<a href="#OneLoginClient">OneLoginClient</a>&nbsp;makes&nbsp;the&nbsp;API&nbsp;calls&nbsp;to&nbsp;the&nbsp;Onelogin's&nbsp;platform&nbsp;described<br>
+at&nbsp;https://developers.onelogin.com/api-docs/1/getting-started/dev-overview.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OneLoginClient-__init__"><strong>__init__</strong></a>(self, client_id, client_secret, region<font color="#909090">='us'</font>, max_results<font color="#909090">=1000</font>, default_timeout<font color="#909090">=(10, 60)</font>, subdomain<font color="#909090">=None</font>, api_configuration<font color="#909090">={}</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;<a href="#OneLoginClient">OneLoginClient</a>.<br>
+&nbsp;<br>
+:param&nbsp;client_id:&nbsp;API&nbsp;Credentials&nbsp;client_id<br>
+:type&nbsp;client_id:&nbsp;string<br>
+:param&nbsp;client_secret:&nbsp;API&nbsp;Credentials&nbsp;client_secret<br>
+:type&nbsp;client_secret:&nbsp;string<br>
+:param&nbsp;region:&nbsp;OneLogin&nbsp;region,&nbsp;either&nbsp;us&nbsp;or&nbsp;eu<br>
+:type&nbsp;region:&nbsp;string<br>
+:param&nbsp;max_results:&nbsp;Maximum&nbsp;number&nbsp;of&nbsp;results&nbsp;returned&nbsp;by&nbsp;list&nbsp;operations<br>
+:type&nbsp;max_results:&nbsp;int<br>
+:param&nbsp;default_timeout:&nbsp;a&nbsp;request&nbsp;timeout<br>
+See&nbsp;<a href="http://docs.python-requests.org/en/master/user/advanced/#timeouts">http://docs.python-requests.org/en/master/user/advanced/#timeouts</a><br>
+:type&nbsp;default_timeout:&nbsp;(float,&nbsp;float)<br>
+:param&nbsp;subdomain:&nbsp;If&nbsp;the&nbsp;subdomain&nbsp;is&nbsp;provided,&nbsp;API&nbsp;calls&nbsp;gonna&nbsp;be&nbsp;done&nbsp;using&nbsp;the&nbsp;subdomain&nbsp;instead&nbsp;the&nbsp;region<br>
+:type&nbsp;subdomain:&nbsp;string<br>
+:param&nbsp;api_configuration:&nbsp;allows&nbsp;to&nbsp;define&nbsp;the&nbsp;api&nbsp;endpoint&nbsp;version&nbsp;to&nbsp;be&nbsp;used<br>
+:type&nbsp;api_configuration:&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-activate_factor"><strong>activate_factor</strong></a>(self, user_id, device_id, expires_in<font color="#909090">=None</font>, custom_message<font color="#909090">=None</font>)</dt><dd><tt>Triggers&nbsp;an&nbsp;SMS&nbsp;or&nbsp;Push&nbsp;notification&nbsp;containing&nbsp;a&nbsp;One-Time&nbsp;Password&nbsp;(OTP)<br>
+that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;authenticate&nbsp;a&nbsp;user&nbsp;with&nbsp;the&nbsp;Verify&nbsp;Factor&nbsp;call.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;device_id&nbsp;of&nbsp;the&nbsp;MFA&nbsp;device.<br>
+:type&nbsp;device_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;expires_in:&nbsp;Default&nbsp;120.&nbsp;Valid&nbsp;range&nbsp;120-900&nbsp;&nbsp;(V2&nbsp;Only)<br>
+:type&nbsp;number:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;custom_message:&nbsp;Only&nbsp;applies&nbsp;to&nbsp;SMS&nbsp;factor&nbsp;(V2&nbsp;only)<br>
+:&nbsp;type&nbsp;custom_message:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;Info&nbsp;with&nbsp;User&nbsp;Id,&nbsp;Device&nbsp;Id,&nbsp;and&nbsp;otp_device<br>
+:rtype:&nbsp;FactorEnrollmentResponse<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/activate-factor&nbsp;Activate&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/activate-factor</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-add_role_admins"><strong>add_role_admins</strong></a>(self, role_id, admin_ids)</dt><dd><tt>Add&nbsp;admins&nbsp;to&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;admin_ids:&nbsp;List&nbsp;of&nbsp;admin&nbsp;ids<br>
+:type&nbsp;admin_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;ids&nbsp;of&nbsp;the&nbsp;assigned&nbsp;admins&nbsp;to&nbsp;a&nbsp;role.<br>
+:return:&nbsp;admin&nbsp;id&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/add-role-admins&nbsp;Add&nbsp;Role&nbsp;Admins&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-add_role_users"><strong>add_role_users</strong></a>(self, role_id, user_ids)</dt><dd><tt>Add&nbsp;users&nbsp;to&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;user_ids:&nbsp;List&nbsp;of&nbsp;user&nbsp;ids<br>
+:type&nbsp;user_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;ids&nbsp;of&nbsp;the&nbsp;assigned&nbsp;users&nbsp;to&nbsp;a&nbsp;role.<br>
+:return:&nbsp;user&nbsp;id&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/add-role-users&nbsp;Add&nbsp;Role&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-add_to_resource_operation"><strong>add_to_resource_operation</strong></a>(self, url, ids, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-app_rule_sort"><strong>app_rule_sort</strong></a>(self, app_id, app_rule_ids)</dt><dd><tt>Update&nbsp;order&nbsp;of&nbsp;app&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_ids:&nbsp;ordered&nbsp;list&nbsp;of&nbsp;app_rule_ids<br>
+:type&nbsp;app_rule_ids:&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;processed&nbsp;app&nbsp;rule&nbsp;ids<br>
+:return:&nbsp;app_rule_id&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/bulk-sort&nbsp;Bulk&nbsp;Sort&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-assign_role_to_user"><strong>assign_role_to_user</strong></a>(self, user_id, role_ids)</dt><dd><tt>Assigns&nbsp;Roles&nbsp;to&nbsp;User<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;role_ids:&nbsp;List&nbsp;of&nbsp;role&nbsp;ids&nbsp;to&nbsp;be&nbsp;added<br>
+:type&nbsp;user_params:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/assign-role-to-user&nbsp;Assign&nbsp;Role&nbsp;to&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-assign_roles_to_privilege"><strong>assign_roles_to_privilege</strong></a>(self, privilege_id, role_ids)</dt><dd><tt>Assign&nbsp;one&nbsp;or&nbsp;more&nbsp;roles&nbsp;to&nbsp;a&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;role_ids:&nbsp;The&nbsp;ids&nbsp;of&nbsp;the&nbsp;roles&nbsp;to&nbsp;be&nbsp;assigned.<br>
+:type&nbsp;role_ids:&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/assign-role&nbsp;Assign&nbsp;Roles&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-assign_users_to_privilege"><strong>assign_users_to_privilege</strong></a>(self, privilege_id, user_ids)</dt><dd><tt>Assign&nbsp;one&nbsp;or&nbsp;more&nbsp;users&nbsp;to&nbsp;a&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;user_ids:&nbsp;The&nbsp;ids&nbsp;of&nbsp;the&nbsp;users&nbsp;to&nbsp;be&nbsp;assigned.<br>
+:type&nbsp;user_ids:&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/assign-users&nbsp;Assign&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-clean_error"><strong>clean_error</strong></a>(self)</dt><dd><tt>Clean&nbsp;any&nbsp;previous&nbsp;error&nbsp;registered&nbsp;at&nbsp;the&nbsp;client.</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_app"><strong>create_app</strong></a>(self, app_params)</dt><dd><tt>Creates&nbsp;an&nbsp;app<br>
+&nbsp;<br>
+:param&nbsp;app_params:&nbsp;App&nbsp;data&nbsp;(connector_id,&nbsp;name,&nbsp;description,&nbsp;visible,&nbsp;policy_id,&nbsp;configuration,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tab_id,&nbsp;visible,&nbsp;brand_id,&nbsp;role_ids,&nbsp;notes)<br>
+:type&nbsp;app_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;app<br>
+:return:&nbsp;app<br>
+:rtype:&nbsp;OneLoginApp<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/create-app&nbsp;Create&nbsp;App&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_app_rule"><strong>create_app_rule</strong></a>(self, app_id, app_rule_params)</dt><dd><tt>Creates&nbsp;a&nbsp;app&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_params:&nbsp;App&nbsp;Rule&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;match,&nbsp;position,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conditions[source,&nbsp;operator,&nbsp;value],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions[action,&nbsp;value,&nbsp;expression,scriplet,&nbsp;macro])<br>
+:type&nbsp;app_rule_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;app&nbsp;rule<br>
+:return:&nbsp;app_rule<br>
+:rtype:&nbsp;AppRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/create-rule&nbsp;Create&nbsp;App&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_brand"><strong>create_brand</strong></a>(self, brand_params)</dt><dd><tt>Creates&nbsp;accound&nbsp;brand<br>
+&nbsp;<br>
+:param&nbsp;brand_params:&nbsp;Brand&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;custom_support_enabled,&nbsp;custom_color,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;custom_accent_color,&nbsp;custom_masking_color,&nbsp;custom_masking_opacity,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enable_custom_label_for_login_screen,&nbsp;custom_label_text_for_login_screen,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login_instruction_title,&nbsp;login_instruction,&nbsp;hide_onelogin_footer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mfa_enrollment_message,&nbsp;background,&nbsp;logo)<br>
+:type&nbsp;brand_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;brand<br>
+:return:&nbsp;brand<br>
+:rtype:&nbsp;Brand<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/create-account-brand&nbsp;Create&nbsp;Account&nbsp;Brand&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_env_var"><strong>create_env_var</strong></a>(self, env_var_params)</dt><dd><tt>Creates&nbsp;an&nbsp;environment&nbsp;variable<br>
+&nbsp;<br>
+:param&nbsp;env_var_params:&nbsp;Smart&nbsp;Hook&nbsp;data&nbsp;(name,&nbsp;value)<br>
+:type&nbsp;env_var_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;environment&nbsp;variable<br>
+:return:&nbsp;environment&nbsp;variable<br>
+:rtype:&nbsp;SmartHookEnv<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/create-environment-variable&nbsp;Create&nbsp;Environment&nbsp;Variable&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_event"><strong>create_event</strong></a>(self, event_params)</dt><dd><tt>Create&nbsp;an&nbsp;event&nbsp;in&nbsp;the&nbsp;OneLogin&nbsp;event&nbsp;log.<br>
+&nbsp;<br>
+:param&nbsp;event_params:&nbsp;Event&nbsp;data&nbsp;(event_type_id,&nbsp;account_id,&nbsp;actor_system,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actor_user_id,&nbsp;actor_user_name,&nbsp;app_id,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assuming_acting_user_id,&nbsp;custom_message,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directory_sync_run_id,&nbsp;group_id,&nbsp;group_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipaddr,&nbsp;otp_device_id,&nbsp;otp_device_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;policy_id,&nbsp;policy_name,&nbsp;role_id,&nbsp;role_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id,&nbsp;user_name)<br>
+:type&nbsp;event_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/events/create-event&nbsp;Create&nbsp;Event&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_mapping"><strong>create_mapping</strong></a>(self, mapping_params)</dt><dd><tt>Creates&nbsp;Mapping<br>
+&nbsp;<br>
+:param&nbsp;mapping_params:&nbsp;Mapping&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;match,&nbsp;position<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conditions[source,&nbsp;operator,value],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions[action,&nbsp;value])<br>
+:type&nbsp;mapping_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;mapping<br>
+:return:&nbsp;mapping<br>
+:rtype:&nbsp;Mapping<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/create-mapping&nbsp;Create&nbsp;Mapping&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_operation"><strong>create_operation</strong></a>(self, url, data)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-create_privilege"><strong>create_privilege</strong></a>(self, name, version, statements)</dt><dd><tt>Creates&nbsp;a&nbsp;Privilege<br>
+&nbsp;<br>
+:param&nbsp;name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;version:&nbsp;The&nbsp;version&nbsp;for&nbsp;the&nbsp;privilege&nbsp;schema.&nbsp;Set&nbsp;to&nbsp;2018-05-18.<br>
+:type&nbsp;version:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;statements:&nbsp;A&nbsp;list&nbsp;of&nbsp;statements.&nbsp;Statement&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;or&nbsp;a&nbsp;dict&nbsp;with&nbsp;the&nbsp;keys&nbsp;Effect,&nbsp;Action&nbsp;and&nbsp;Scope<br>
+:type&nbsp;statements:&nbsp;list[Statement]&nbsp;or&nbsp;list[dict]<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;privilege<br>
+:return:&nbsp;privilege<br>
+:rtype:&nbsp;Privilege<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/create-privilege&nbsp;Create&nbsp;Privilege&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_resource"><strong>create_resource</strong></a>(self, resource_cls, url, data, query_params, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-create_risk_rule"><strong>create_risk_rule</strong></a>(self, risk_rule_params)</dt><dd><tt>Creates&nbsp;a&nbsp;risk&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;risk_rule_params:&nbsp;Risk&nbsp;Rule&nbsp;data&nbsp;(name,&nbsp;type,&nbsp;target,&nbsp;filters,&nbsp;source)<br>
+:type&nbsp;risk_rule_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;risk&nbsp;rule<br>
+:return:&nbsp;risk_rule<br>
+:rtype:&nbsp;RiskRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/create-rule&nbsp;Create&nbsp;a&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_role"><strong>create_role</strong></a>(self, role_params)</dt><dd><tt>Create&nbsp;a&nbsp;role<br>
+&nbsp;<br>
+:param&nbsp;role_params:&nbsp;Role&nbsp;data&nbsp;(name,&nbsp;apps,&nbsp;users,&nbsp;admins)<br>
+:type&nbsp;role_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;role&nbsp;id<br>
+:return:&nbsp;role<br>
+:rtype:&nbsp;int<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/create-role&nbsp;Create&nbsp;Role&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_session_login_token"><strong>create_session_login_token</strong></a>(self, query_params, allowed_origin<font color="#909090">=''</font>)</dt><dd><tt>Generates&nbsp;a&nbsp;session&nbsp;login&nbsp;token&nbsp;in&nbsp;scenarios&nbsp;in&nbsp;which&nbsp;MFA&nbsp;may&nbsp;or&nbsp;may&nbsp;not&nbsp;be&nbsp;required.<br>
+A&nbsp;session&nbsp;login&nbsp;token&nbsp;expires&nbsp;two&nbsp;minutes&nbsp;after&nbsp;creation.<br>
+&nbsp;<br>
+:param&nbsp;query_params:&nbsp;Query&nbsp;Parameters&nbsp;(username_or_email,&nbsp;password,&nbsp;subdomain,&nbsp;return_to_url,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip_address,&nbsp;browser_id)<br>
+:type&nbsp;query_params:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;allowed_origin:&nbsp;Custom-Allowed-Origin-Header.&nbsp;Required&nbsp;for&nbsp;CORS&nbsp;requests&nbsp;only.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;to&nbsp;the&nbsp;Origin&nbsp;URI&nbsp;from&nbsp;which&nbsp;you&nbsp;are&nbsp;allowed&nbsp;to&nbsp;send&nbsp;a&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;CORS.<br>
+:type&nbsp;allowed_origin:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;session&nbsp;token<br>
+:return:&nbsp;return&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;SessionTokenInfo/SessionTokenMFAInfo<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/create-session-login-token&nbsp;Create&nbsp;Session&nbsp;Login&nbsp;Token&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_smart_hook"><strong>create_smart_hook</strong></a>(self, smart_hook_params)</dt><dd><tt>Creates&nbsp;a&nbsp;hook<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_params:&nbsp;Smart&nbsp;Hook&nbsp;data&nbsp;(type,&nbsp;disabled,&nbsp;timeout,&nbsp;env_vars,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runtime,&nbsp;context_version,&nbsp;retries,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;risk_enabled,&nbsp;mfa_device_info_enabled,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location_enabled,&nbsp;packages,&nbsp;function)<br>
+:type&nbsp;smart_hook_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;hook<br>
+:return:&nbsp;smart_hook<br>
+:rtype:&nbsp;SmartHook<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/create-hook&nbsp;Create&nbsp;a&nbsp;Hook&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-create_user"><strong>create_user</strong></a>(self, user_params, mappings<font color="#909090">=None</font>, validate_policy<font color="#909090">=None</font>)</dt><dd><tt>Creates&nbsp;an&nbsp;user<br>
+&nbsp;<br>
+:param&nbsp;user_params:&nbsp;User&nbsp;data&nbsp;(firstname,&nbsp;lastname,&nbsp;email,&nbsp;username,&nbsp;company,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;department,&nbsp;directory_id,&nbsp;distinguished_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;external_id,&nbsp;group_id,&nbsp;invalid_login_attempts,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;locale_code,&nbsp;manager_ad_id,&nbsp;member_of,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;openid_name,&nbsp;phone,&nbsp;samaccountname,&nbsp;title,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userprincipalname)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2&nbsp;(password_confirmation,&nbsp;password_algorithm,&nbsp;salt,&nbsp;role_ids<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state,&nbsp;status,&nbsp;trusted_idp_id)<br>
+:type&nbsp;user_params:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;mappings:&nbsp;Controls&nbsp;how&nbsp;mappings&nbsp;will&nbsp;be&nbsp;applied&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;creation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[async,&nbsp;sync,&nbsp;disabled]<br>
+:type&nbsp;mappings:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;validate_policy:&nbsp;Validate&nbsp;password&nbsp;against&nbsp;user&nbsp;policy?<br>
+:type&nbsp;validate_policy:&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;created&nbsp;user<br>
+:return:&nbsp;user<br>
+:rtype:&nbsp;User<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/create-user&nbsp;Create&nbsp;User&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/users/create-user</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_app"><strong>delete_app</strong></a>(self, app_id)</dt><dd><tt>Deletes&nbsp;an&nbsp;app<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/delete-app&nbsp;Delete&nbsp;App&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_app_parameter"><strong>delete_app_parameter</strong></a>(self, app_id, parameter_id)</dt><dd><tt>Deletes&nbsp;an&nbsp;App&nbsp;Parameter<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;parameter_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;parameter&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;parameter_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/delete-parameter&nbsp;Delete&nbsp;App&nbsp;Parameter&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_app_rule"><strong>delete_app_rule</strong></a>(self, app_id, app_rule_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;app&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app&nbsp;rule<br>
+:type&nbsp;app_rule_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/delete-rule&nbsp;Delete&nbsp;App&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_brand"><strong>delete_brand</strong></a>(self, brand_id)</dt><dd><tt>Deletes&nbsp;Account&nbsp;Brand<br>
+&nbsp;<br>
+:param&nbsp;brand_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;brand&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;brand_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/delete-account-brand&nbsp;Deletes&nbsp;Account&nbsp;Brand&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_env_var"><strong>delete_env_var</strong></a>(self, env_var_id)</dt><dd><tt>Deletes&nbsp;an&nbsp;environment&nbsp;variable<br>
+&nbsp;<br>
+:param&nbsp;env_var_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;environment&nbsp;variable<br>
+:type&nbsp;env_var_id:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;true&nbsp;if&nbsp;action&nbsp;succeed<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/delete-environment-variable&nbsp;Delete&nbsp;Environment&nbsp;Variable&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_mapping"><strong>delete_mapping</strong></a>(self, mapping_id)</dt><dd><tt>Deletes&nbsp;mapping<br>
+&nbsp;<br>
+:param&nbsp;mapping_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;mapping&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;mapping_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/delete-mapping&nbsp;Delete&nbsp;Mapping&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_privilege"><strong>delete_privilege</strong></a>(self, privilege_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;Privilege<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege&nbsp;you&nbsp;want&nbsp;to&nbsp;delete.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/delete-privilege&nbsp;Delete&nbsp;Privilege&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_resource"><strong>delete_resource</strong></a>(self, url, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-delete_risk_rule"><strong>delete_risk_rule</strong></a>(self, risk_rule_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;risk&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;risk_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;risk&nbsp;rule<br>
+:type&nbsp;risk_rule_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/delete-rule&nbsp;Delete&nbsp;a&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_role"><strong>delete_role</strong></a>(self, role_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;role<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/update-role&nbsp;Delete&nbsp;Role&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_smart_hook"><strong>delete_smart_hook</strong></a>(self, smart_hook_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;hook<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;Smart&nbsp;Hook.<br>
+:type&nbsp;smart_hook_id:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;true&nbsp;if&nbsp;action&nbsp;succeed<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/delete-hook&nbsp;Delete&nbsp;a&nbsp;Hook&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-delete_user"><strong>delete_user</strong></a>(self, user_id)</dt><dd><tt>Deletes&nbsp;an&nbsp;user<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/delete-user&nbsp;Delete&nbsp;User&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-dryrun_mapping"><strong>dryrun_mapping</strong></a>(self, mapping_id, user_ids)</dt><dd><tt>Performs&nbsp;a&nbsp;User&nbsp;Mappings&nbsp;dry&nbsp;run<br>
+&nbsp;<br>
+:param&nbsp;mapping_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;mapping&nbsp;to&nbsp;be&nbsp;deleted<br>
+:type&nbsp;mapping_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;user_ids:&nbsp;List&nbsp;of&nbsp;user&nbsp;IDs&nbsp;tested&nbsp;against&nbsp;the&nbsp;mapping&nbsp;conditions&nbsp;to&nbsp;verify&nbsp;that&nbsp;the&nbsp;mapping&nbsp;would&nbsp;be&nbsp;applied<br>
+:type&nbsp;user_ids:&nbsp;list[int]<br>
+&nbsp;<br>
+Returns<br>
+:return:&nbsp;list&nbsp;of&nbsp;{User,mapped}<br>
+:rtype:&nbsp;dict<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/dry-run-mapping&nbsp;Dry&nbsp;Run&nbsp;Mapping&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-enroll_factor"><strong>enroll_factor</strong></a>(self, user_id, factor_id, display_name, number<font color="#909090">=None</font>, verified<font color="#909090">=False</font>, expires_in<font color="#909090">=None</font>, custom_message<font color="#909090">=None</font>)</dt><dd><tt>Enroll&nbsp;a&nbsp;user&nbsp;with&nbsp;a&nbsp;given&nbsp;authentication&nbsp;factor.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;factor_id:&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;factor&nbsp;to&nbsp;enroll&nbsp;the&nbsp;user&nbsp;with.<br>
+:type&nbsp;factor_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;display_name:&nbsp;A&nbsp;name&nbsp;for&nbsp;the&nbsp;users&nbsp;device.<br>
+:type&nbsp;display_name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;number:&nbsp;The&nbsp;phone&nbsp;number&nbsp;of&nbsp;the&nbsp;user&nbsp;in&nbsp;E.164&nbsp;format..&nbsp;(V1&nbsp;only)<br>
+:type&nbsp;number:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;verified:&nbsp;Default&nbsp;false.&nbsp;Pre-verified&nbsp;and&nbsp;can&nbsp;be&nbsp;immediately&nbsp;activated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(OL&nbsp;Voice&nbsp;requires&nbsp;verified&nbsp;=&nbsp;true)<br>
+:type&nbsp;number:&nbsp;bool<br>
+&nbsp;<br>
+:param&nbsp;expires_in:&nbsp;Default&nbsp;120.&nbsp;Valid&nbsp;range&nbsp;120-900&nbsp;&nbsp;(V2&nbsp;Only)<br>
+:type&nbsp;number:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;custom_message:&nbsp;Only&nbsp;applies&nbsp;to&nbsp;SMS&nbsp;factor&nbsp;(V2&nbsp;only)<br>
+:&nbsp;type&nbsp;custom_message:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;MFA&nbsp;device<br>
+:rtype:&nbsp;OTP_Device<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enroll-factor&nbsp;Enroll&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/enroll-factor</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-execute_call"><strong>execute_call</strong></a>(self, method, url, headers<font color="#909090">=None</font>, params<font color="#909090">=None</font>, json<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-generate_invite_link"><strong>generate_invite_link</strong></a>(self, email)</dt><dd><tt>Generates&nbsp;an&nbsp;invite&nbsp;link&nbsp;for&nbsp;a&nbsp;user&nbsp;that&nbsp;you&nbsp;have&nbsp;already&nbsp;created&nbsp;in&nbsp;your&nbsp;OneLogin&nbsp;account.<br>
+&nbsp;<br>
+:param&nbsp;email:&nbsp;Set&nbsp;to&nbsp;the&nbsp;email&nbsp;address&nbsp;of&nbsp;the&nbsp;user&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;generate&nbsp;an&nbsp;invite&nbsp;link&nbsp;for.<br>
+:type&nbsp;email:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;invitation&nbsp;link<br>
+:return:&nbsp;link<br>
+:rtype:&nbsp;str<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/invite-links/generate-invite-link&nbsp;Generate&nbsp;Invite&nbsp;Link&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-generate_mfa_token"><strong>generate_mfa_token</strong></a>(self, user_id, expires_in<font color="#909090">=259200</font>, reusable<font color="#909090">=False</font>)</dt><dd><tt>Use&nbsp;to&nbsp;generate&nbsp;a&nbsp;temporary&nbsp;MFA&nbsp;token&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;place&nbsp;of&nbsp;other&nbsp;MFA&nbsp;tokens&nbsp;for&nbsp;a&nbsp;set&nbsp;time&nbsp;period.<br>
+For&nbsp;example,&nbsp;use&nbsp;this&nbsp;token&nbsp;for&nbsp;account&nbsp;recovery.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;expires_in:&nbsp;Set&nbsp;the&nbsp;duration&nbsp;of&nbsp;the&nbsp;token&nbsp;in&nbsp;seconds.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;259200&nbsp;seconds&nbsp;=&nbsp;72h)&nbsp;72&nbsp;hours&nbsp;is&nbsp;the&nbsp;max&nbsp;value.<br>
+:type&nbsp;expires_in:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;reusable:&nbsp;Defines&nbsp;if&nbsp;the&nbsp;token&nbsp;reusable.&nbsp;(default:&nbsp;false)&nbsp;If&nbsp;set&nbsp;to&nbsp;true,&nbsp;token&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;multiple&nbsp;apps,&nbsp;until&nbsp;it&nbsp;expires.<br>
+:type&nbsp;reusable:&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;mfa&nbsp;token<br>
+:return:&nbsp;return&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;MFAToken<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/generate-mfa-token&nbsp;Generate&nbsp;MFA&nbsp;Token&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_access_token"><strong>get_access_token</strong></a>(self)</dt><dd><tt>Generates&nbsp;an&nbsp;access&nbsp;token&nbsp;and&nbsp;refresh&nbsp;token&nbsp;that&nbsp;you&nbsp;may&nbsp;use&nbsp;to<br>
+call&nbsp;Onelogin's&nbsp;API&nbsp;methods.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;generated&nbsp;OAuth&nbsp;Token&nbsp;info<br>
+:return:&nbsp;OAuth&nbsp;Token&nbsp;info<br>
+:rtype:&nbsp;OneLoginToken<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/oauth20-tokens/generate-tokens&nbsp;Generate&nbsp;Tokens&nbsp;documentation.</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app"><strong>get_app</strong></a>(self, app_id)</dt><dd><tt>Gets&nbsp;App&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;app&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;app<br>
+:rtype:&nbsp;OneLoginApp<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/get-app</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_action_values"><strong>get_app_action_values</strong></a>(self, app_id, action_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values&nbsp;to&nbsp;set&nbsp;using&nbsp;a&nbsp;given&nbsp;action.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;action_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;action&nbsp;(A&nbsp;Mapping&nbsp;Action).<br>
+:type&nbsp;action_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;values<br>
+:return:&nbsp;value&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-action-values&nbsp;List&nbsp;Action&nbsp;values&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_actions"><strong>get_app_actions</strong></a>(self, app_id)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;actions&nbsp;that&nbsp;can&nbsp;be&nbsp;applied&nbsp;when&nbsp;an&nbsp;App&nbsp;Rule&nbsp;run<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;actions<br>
+:return:&nbsp;action&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-actions&nbsp;List&nbsp;Actions&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_condition_operators"><strong>get_app_condition_operators</strong></a>(self, app_id, condition_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;operators&nbsp;for&nbsp;a&nbsp;given&nbsp;condition&nbsp;value.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;condition_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;condition&nbsp;(An&nbsp;App&nbsp;Condition).<br>
+:type&nbsp;condition_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;operators<br>
+:return:&nbsp;operator&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-condition-operators&nbsp;List&nbsp;Conditions&nbsp;Operators&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_condition_values"><strong>get_app_condition_values</strong></a>(self, app_id, condition_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values&nbsp;to&nbsp;compare&nbsp;to&nbsp;a&nbsp;condition&nbsp;type.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;condition_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;condition&nbsp;(An&nbsp;App&nbsp;Condition).<br>
+:type&nbsp;condition_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;values<br>
+:return:&nbsp;value&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-condition-values&nbsp;List&nbsp;Condition&nbsp;Values&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_conditions"><strong>get_app_conditions</strong></a>(self, app_id)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;App&nbsp;Conditions&nbsp;types&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;match&nbsp;users&nbsp;when&nbsp;app&nbsp;rules&nbsp;are&nbsp;run.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;conditions<br>
+:return:&nbsp;condition&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-conditions&nbsp;List&nbsp;Conditions&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_rule"><strong>get_app_rule</strong></a>(self, app_id, app_rule_id)</dt><dd><tt>Gets&nbsp;App&nbsp;Rule&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app&nbsp;rule<br>
+:type&nbsp;app_rule_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;app&nbsp;rule&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;app_rule<br>
+:rtype:&nbsp;AppRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/get-rule&nbsp;Get&nbsp;App&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_rules"><strong>get_app_rules</strong></a>(self, app_id, query_parameters<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;app&nbsp;rules.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(enabled,&nbsp;has_condition,&nbsp;has_condition_type,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_action,&nbsp;has_action_type)<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;app&nbsp;rules<br>
+:return:&nbsp;app&nbsp;rules&nbsp;list<br>
+:rtype:&nbsp;list[AppRule]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/list-rules&nbsp;List&nbsp;Rules&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_app_users"><strong>get_app_users</strong></a>(self, app_id, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;users&nbsp;related&nbsp;to&nbsp;an&nbsp;App.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;App<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;apps&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;users<br>
+:return:&nbsp;user&nbsp;list<br>
+:rtype:&nbsp;list[User]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/list-users&nbsp;List&nbsp;App&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_apps"><strong>get_apps</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;Apps&nbsp;in&nbsp;a&nbsp;OneLogin&nbsp;account.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;apps&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;apps<br>
+:return:&nbsp;app&nbsp;list<br>
+:rtype:&nbsp;list[OneLoginApp]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/apps/get-apps&nbsp;Get&nbsp;Apps&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/apps/list-apps</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_authorized_headers"><strong>get_authorized_headers</strong></a>(self, bearer<font color="#909090">=True</font>, headers<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-get_brand"><strong>get_brand</strong></a>(self, brand_id)</dt><dd><tt>Gets&nbsp;Brand&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;brand_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;brand<br>
+:type&nbsp;brand_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;brand&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;brand<br>
+:rtype:&nbsp;Brand<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/get-account-brand&nbsp;Get&nbsp;Account&nbsp;Brand&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_brand_apps"><strong>get_brand_apps</strong></a>(self, brand_id, max_results<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;Apps&nbsp;Associated&nbsp;with&nbsp;Account&nbsp;Brand.<br>
+&nbsp;<br>
+:param&nbsp;brand_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;brand<br>
+:type&nbsp;brand_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;apps&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;Apps&nbsp;of&nbsp;a&nbsp;brand.<br>
+:return:&nbsp;app&nbsp;list<br>
+:rtype:&nbsp;list[OneloginApp]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/get-apps-associated-with-account-brand&nbsp;Get&nbsp;Apps&nbsp;Associated&nbsp;with&nbsp;Account&nbsp;Brand&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_brands"><strong>get_brands</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;account&nbsp;brands<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;brands&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;brands<br>
+:return:&nbsp;brand&nbsp;list<br>
+:rtype:&nbsp;list[Brand]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/list-account-brands&nbsp;List&nbsp;Account&nbsp;Brands&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_connectors"><strong>get_connectors</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;Connectors&nbsp;in&nbsp;a&nbsp;OneLogin&nbsp;account.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;connectors&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;connectors<br>
+:return:&nbsp;conector&nbsp;list<br>
+:rtype:&nbsp;list[Connector]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/connectors/list-connectors&nbsp;List&nbsp;Connectors&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_custom_attributes"><strong>get_custom_attributes</strong></a>(self)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;custom&nbsp;attribute&nbsp;fields&nbsp;(also&nbsp;known&nbsp;as&nbsp;custom&nbsp;user&nbsp;fields)&nbsp;that&nbsp;have&nbsp;been&nbsp;defined&nbsp;for&nbsp;OL&nbsp;account.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;custom&nbsp;attributes&nbsp;of&nbsp;the&nbsp;account<br>
+:return:&nbsp;custom&nbsp;attribute&nbsp;list<br>
+:rtype:&nbsp;list[str]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/get-custom-attributes&nbsp;Get&nbsp;Custom&nbsp;Attributes&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_email_settings"><strong>get_email_settings</strong></a>(self)</dt><dd><tt>Get&nbsp;Email&nbsp;Settings&nbsp;Config<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;dict&nbsp;with&nbsp;email&nbsp;settings<br>
+:return:&nbsp;email_settings<br>
+:rtype:&nbsp;dict<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/get-email-settings&nbsp;Get&nbsp;Email&nbsp;Settings&nbsp;Config&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_embed_apps"><strong>get_embed_apps</strong></a>(self, token, email)</dt><dd><tt>Lists&nbsp;apps&nbsp;accessible&nbsp;by&nbsp;a&nbsp;OneLogin&nbsp;user.<br>
+&nbsp;<br>
+:param&nbsp;token:&nbsp;Provide&nbsp;your&nbsp;embedding&nbsp;token.<br>
+:type&nbsp;token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;email:&nbsp;Provide&nbsp;the&nbsp;email&nbsp;of&nbsp;the&nbsp;user&nbsp;for&nbsp;which&nbsp;you&nbsp;want&nbsp;to&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;embeddable&nbsp;apps.<br>
+:type&nbsp;email:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;embed&nbsp;apps<br>
+:return:&nbsp;A&nbsp;list&nbsp;of&nbsp;Apps<br>
+:rtype:&nbsp;list[App]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/embed-apps/get-apps-to-embed-for-a-user&nbsp;Get&nbsp;Apps&nbsp;to&nbsp;Embed&nbsp;for&nbsp;a&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_enrolled_factors"><strong>get_enrolled_factors</strong></a>(self, user_id)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;authentication&nbsp;factors&nbsp;registered&nbsp;to&nbsp;a&nbsp;particular&nbsp;user&nbsp;for&nbsp;multifactor&nbsp;authentication&nbsp;(MFA)<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;OTP_Device&nbsp;list<br>
+:rtype:&nbsp;list[OTP_Device]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enrolled-factors&nbsp;Get&nbsp;Enrolled&nbsp;Authentication&nbsp;Factors&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/enrolled-factors</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_env_var"><strong>get_env_var</strong></a>(self, env_var_id)</dt><dd><tt>Return&nbsp;a&nbsp;single&nbsp;Smart&nbsp;Hook&nbsp;Environment&nbsp;Variable<br>
+&nbsp;<br>
+:param&nbsp;env_var_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;environment&nbsp;variable<br>
+:type&nbsp;env_var_id:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;requested&nbsp;environment&nbsp;variable<br>
+:return:&nbsp;environment&nbsp;variable<br>
+:rtype:&nbsp;SmartHookEnv<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/get-environment-variable&nbsp;Get&nbsp;Environment&nbsp;Variable&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_env_vars"><strong>get_env_vars</strong></a>(self, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;environment&nbsp;variables.<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;smart&nbsp;hooks&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;smart&nbsp;hooks<br>
+:return:&nbsp;environment&nbsp;variables&nbsp;list<br>
+:rtype:&nbsp;list[SmartHookEnv]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/list-environment-variables&nbsp;List&nbsp;Environment&nbsp;Variables&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_event"><strong>get_event</strong></a>(self, event_id)</dt><dd><tt>Gets&nbsp;Event&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;Event<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation<br>
+:return:&nbsp;event<br>
+:rtype:&nbsp;Event<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/events/get-event-by-id&nbsp;Get&nbsp;Event&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_event_types"><strong>get_event_types</strong></a>(self)</dt><dd><tt>List&nbsp;of&nbsp;all&nbsp;OneLogin&nbsp;event&nbsp;types&nbsp;available&nbsp;to&nbsp;the&nbsp;Events&nbsp;API.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;event&nbsp;type<br>
+:return:&nbsp;event&nbsp;type&nbsp;list<br>
+:rtype:&nbsp;list[EventType]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/events/event-types&nbsp;Get&nbsp;Event&nbsp;Types&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_events"><strong>get_events</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;Event&nbsp;resources.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;events&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;events<br>
+:return:&nbsp;event&nbsp;list<br>
+:rtype:&nbsp;list[Event]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/events/get-events&nbsp;Get&nbsp;Events&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_factors"><strong>get_factors</strong></a>(self, user_id)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;authentication&nbsp;factors&nbsp;that&nbsp;are&nbsp;available&nbsp;for&nbsp;user&nbsp;enrollment&nbsp;via&nbsp;API.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;AuthFactor&nbsp;list<br>
+:rtype:&nbsp;list[AuthFactor]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/available-factors&nbsp;Get&nbsp;Available&nbsp;Authentication&nbsp;Factors&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/available-factors</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_group"><strong>get_group</strong></a>(self, group_id)</dt><dd><tt>Gets&nbsp;Group&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;group<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;group&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;group<br>
+:rtype:&nbsp;Group<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/groups/get-group-by-id&nbsp;Get&nbsp;Group&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_groups"><strong>get_groups</strong></a>(self, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;Group&nbsp;resources&nbsp;(element&nbsp;of&nbsp;groups&nbsp;limited&nbsp;with&nbsp;the&nbsp;max_results&nbsp;parameter,&nbsp;or&nbsp;client&nbsp;attribute).<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;groups&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;groups<br>
+:return:&nbsp;group&nbsp;list<br>
+:rtype:&nbsp;list[Group]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/groups/get-groups&nbsp;Get&nbsp;Groups&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_headers"><strong>get_headers</strong></a>(self, bearer<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping"><strong>get_mapping</strong></a>(self, mapping_id)</dt><dd><tt>Gets&nbsp;Mapping&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;mapping_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;Mapping<br>
+:type&nbsp;mapping_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;mapping&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;mapping<br>
+:rtype:&nbsp;Mapping<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/get-mapping&nbsp;Get&nbsp;Mapping&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping_action_values"><strong>get_mapping_action_values</strong></a>(self, action_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values&nbsp;to&nbsp;set&nbsp;using&nbsp;a&nbsp;given&nbsp;action.<br>
+&nbsp;<br>
+:param&nbsp;action_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;action&nbsp;(A&nbsp;Mapping&nbsp;Action).<br>
+:type&nbsp;action_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;values<br>
+:return:&nbsp;value&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-action-values&nbsp;List&nbsp;Action&nbsp;values&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping_actions"><strong>get_mapping_actions</strong></a>(self)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;actions&nbsp;that&nbsp;can&nbsp;be&nbsp;applied&nbsp;when&nbsp;a&nbsp;mapping&nbsp;runs.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;actions<br>
+:return:&nbsp;action&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-actions&nbsp;List&nbsp;Actions&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping_condition_operators"><strong>get_mapping_condition_operators</strong></a>(self, condition_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;operators&nbsp;for&nbsp;a&nbsp;given&nbsp;condition&nbsp;value.<br>
+&nbsp;<br>
+:param&nbsp;condition_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;condition&nbsp;(A&nbsp;Mapping&nbsp;Condition).<br>
+:type&nbsp;condition_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;operators<br>
+:return:&nbsp;operator&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-condition-operators&nbsp;List&nbsp;Conditions&nbsp;Operators&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping_condition_values"><strong>get_mapping_condition_values</strong></a>(self, condition_value)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values&nbsp;to&nbsp;compare&nbsp;to&nbsp;a&nbsp;condition&nbsp;type.<br>
+&nbsp;<br>
+:param&nbsp;condition_value:&nbsp;Value&nbsp;for&nbsp;the&nbsp;selected&nbsp;condition&nbsp;(A&nbsp;Mapping&nbsp;Condition).<br>
+:type&nbsp;condition_value:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;values<br>
+:return:&nbsp;value&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-condition-values&nbsp;List&nbsp;Condition&nbsp;Values&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mapping_conditions"><strong>get_mapping_conditions</strong></a>(self)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;Mapping&nbsp;Conditions&nbsp;types&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;match&nbsp;users&nbsp;when&nbsp;mappings&nbsp;are&nbsp;run.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;conditions<br>
+:return:&nbsp;condition&nbsp;list<br>
+:rtype:&nbsp;list[dict]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-conditions&nbsp;List&nbsp;Conditions&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_mappings"><strong>get_mappings</strong></a>(self, query_parameters<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;Mapping&nbsp;resources.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;mappings<br>
+:return:&nbsp;role&nbsp;list<br>
+:rtype:&nbsp;list[Mapping]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/list-mappings&nbsp;List&nbsp;Mappings&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_privilege"><strong>get_privilege</strong></a>(self, privilege_id)</dt><dd><tt>Get&nbsp;a&nbsp;Privilege<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;privilege&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;privilege<br>
+:rtype:&nbsp;Privilege<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/get-privilege&nbsp;Get&nbsp;Privilege&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_privileges"><strong>get_privileges</strong></a>(self)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;Privileges&nbsp;created&nbsp;in&nbsp;an&nbsp;account.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;privileges<br>
+:return:&nbsp;privileges&nbsp;list<br>
+:rtype:&nbsp;list[Privilege]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/list-privileges&nbsp;List&nbsp;Privileges&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_rate_limits"><strong>get_rate_limits</strong></a>(self)</dt><dd><tt>Gets&nbsp;current&nbsp;rate&nbsp;limit&nbsp;details&nbsp;about&nbsp;an&nbsp;access&nbsp;token.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;rate&nbsp;limit&nbsp;info<br>
+:return:&nbsp;rate&nbsp;limit&nbsp;info<br>
+:rtype:&nbsp;RateLimit<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/oauth20-tokens/get-rate-limit&nbsp;Get&nbsp;Rate&nbsp;Limit&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_risk_rule"><strong>get_risk_rule</strong></a>(self, risk_rule_id)</dt><dd><tt>Gets&nbsp;Risk&nbsp;Rule&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;risk_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;risk&nbsp;rule<br>
+:type&nbsp;risk_rule_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;risk&nbsp;rule&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;risk_rule<br>
+:rtype:&nbsp;RiskRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/get-rule&nbsp;Get&nbsp;a&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_risk_rules"><strong>get_risk_rules</strong></a>(self)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;risk&nbsp;rules.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;risk&nbsp;rules<br>
+:return:&nbsp;risk&nbsp;rule&nbsp;list<br>
+:rtype:&nbsp;list[RiskRule]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/get-rules&nbsp;List&nbsp;Rules&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_risk_score"><strong>get_risk_score</strong></a>(self, track_event_params)</dt><dd><tt>Gets&nbsp;a&nbsp;Risk&nbsp;Score<br>
+&nbsp;<br>
+:param&nbsp;track_event_params:&nbsp;Event&nbsp;data&nbsp;(verb,&nbsp;ip,&nbsp;user_agent,&nbsp;user[id,&nbsp;name,&nbsp;authenticated],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source[id,name],&nbsp;session[id],&nbsp;device[id],&nbsp;fp,&nbsp;published)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&nbsp;id&nbsp;data&nbsp;needs&nbsp;to&nbsp;be&nbsp;in&nbsp;the&nbsp;format:&nbsp;{instance&nbsp;region}_{OneLogin&nbsp;User&nbsp;Id}<br>
+:type&nbsp;track_event_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;risk&nbsp;score<br>
+:return:&nbsp;risk_score<br>
+:rtype:&nbsp;RiskScore<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/verify&nbsp;Get&nbsp;a&nbsp;Risk&nbsp;Score&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_risk_score_insights"><strong>get_risk_score_insights</strong></a>(self, query_parameters<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;Score&nbsp;Insights.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;risk&nbsp;score&nbsp;insight&nbsp;info<br>
+:return:&nbsp;risk_score_insights<br>
+:rtype:&nbsp;RiskScoreInsights<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/get-scores&nbsp;Get&nbsp;Score&nbsp;Insights&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_role"><strong>get_role</strong></a>(self, role_id)</dt><dd><tt>Gets&nbsp;Role&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;Role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;role&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;role<br>
+:rtype:&nbsp;Role<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/roles/get-role-by-id&nbsp;Get&nbsp;Role&nbsp;by&nbsp;ID&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/roles/get-role</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_role_admins"><strong>get_role_admins</strong></a>(self, role_id, name<font color="#909090">=None</font>, include_unassigned<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;role&nbsp;administrators.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;name:&nbsp;Filters&nbsp;on&nbsp;first&nbsp;name,&nbsp;last&nbsp;name,&nbsp;username,&nbsp;and&nbsp;email&nbsp;address.&nbsp;(optional)<br>
+:type&nbsp;name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;include_unassigned:&nbsp;Include&nbsp;admins&nbsp;that&nbsp;aren't&nbsp;assigned&nbsp;to&nbsp;the&nbsp;role.&nbsp;(optional)<br>
+:type&nbsp;include_unassigned:&nbsp;bool<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;admins&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;AssignedAdmin&nbsp;of&nbsp;a&nbsp;role.<br>
+:return:&nbsp;app&nbsp;list<br>
+:rtype:&nbsp;list[AssignedAdmin]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/get-role-admins&nbsp;Get&nbsp;Role&nbsp;Admins&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_role_apps"><strong>get_role_apps</strong></a>(self, role_id, assigned<font color="#909090">=True</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;App&nbsp;assigned&nbsp;to&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;assigned:&nbsp;Defaults&nbsp;to&nbsp;true.&nbsp;Returns&nbsp;all&nbsp;apps&nbsp;assigned&nbsp;to&nbsp;the&nbsp;role,&nbsp;or&nbsp;the&nbsp;opposite&nbsp;(optional)<br>
+:type&nbsp;assigned:&nbsp;bool<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;apps&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;App&nbsp;assigned&nbsp;to&nbsp;a&nbsp;role.<br>
+:return:&nbsp;app&nbsp;list<br>
+:rtype:&nbsp;list[App]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/get-role-apps&nbsp;Get&nbsp;Role&nbsp;Apps&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_role_users"><strong>get_role_users</strong></a>(self, role_id, name<font color="#909090">=None</font>, include_unassigned<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;role&nbsp;users.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;name:&nbsp;Filters&nbsp;on&nbsp;first&nbsp;name,&nbsp;last&nbsp;name,&nbsp;username,&nbsp;and&nbsp;email&nbsp;address.&nbsp;(optional)<br>
+:type&nbsp;name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;include_unassigned:&nbsp;Include&nbsp;admins&nbsp;that&nbsp;aren't&nbsp;assigned&nbsp;to&nbsp;the&nbsp;role.&nbsp;(optional)<br>
+:type&nbsp;include_unassigned:&nbsp;bool<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;users&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;AssignedUser&nbsp;of&nbsp;a&nbsp;role.<br>
+:return:&nbsp;app&nbsp;list<br>
+:rtype:&nbsp;list[AssignedUser]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/get-role-users&nbsp;Get&nbsp;Role&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_roles"><strong>get_roles</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;Role&nbsp;resources.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;roles&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;roles<br>
+:return:&nbsp;role&nbsp;list<br>
+:rtype:&nbsp;list[Role]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/roles/get-roles&nbsp;Get&nbsp;Roles&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/roles/list-roles</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_roles_assigned_to_privilege"><strong>get_roles_assigned_to_privilege</strong></a>(self, privilege_id, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;roles&nbsp;assigned&nbsp;to&nbsp;a&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;roles&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;roles<br>
+:return:&nbsp;role_ids&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/get-roles&nbsp;Get&nbsp;Assigned&nbsp;Roles&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_saml_assertion"><strong>get_saml_assertion</strong></a>(self, username_or_email, password, app_id, subdomain, ip_address<font color="#909090">=None</font>)</dt><dd><tt>Generates&nbsp;a&nbsp;SAML&nbsp;Assertion.<br>
+&nbsp;<br>
+:param&nbsp;username_or_email:&nbsp;username&nbsp;or&nbsp;email&nbsp;of&nbsp;the&nbsp;OneLogin&nbsp;user&nbsp;accessing&nbsp;the&nbsp;app<br>
+:type&nbsp;username_or_email:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;password:&nbsp;Password&nbsp;of&nbsp;the&nbsp;OneLogin&nbsp;user&nbsp;accessing&nbsp;the&nbsp;app<br>
+:type&nbsp;password:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;App&nbsp;ID&nbsp;of&nbsp;the&nbsp;app&nbsp;for&nbsp;which&nbsp;you&nbsp;want&nbsp;to&nbsp;generate&nbsp;a&nbsp;SAML&nbsp;token<br>
+:type&nbsp;app_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;subdomain:&nbsp;subdomain&nbsp;of&nbsp;the&nbsp;OneLogin&nbsp;account&nbsp;related&nbsp;to&nbsp;the&nbsp;user/app<br>
+:type&nbsp;subdomain:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;ip_address:&nbsp;whitelisted&nbsp;IP&nbsp;address&nbsp;that&nbsp;needs&nbsp;to&nbsp;be&nbsp;bypassed&nbsp;(some&nbsp;MFA&nbsp;scenarios).<br>
+:type&nbsp;ip_address:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;SAMLEndpointResponse&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;an&nbsp;encoded&nbsp;SAMLResponse<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;SAMLEndpointResponse<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/saml-assertions/generate-saml-assertion&nbsp;Generate&nbsp;SAML&nbsp;Assertion&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/saml-assertions/generate-saml-assertion</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_saml_assertion_verifying"><strong>get_saml_assertion_verifying</strong></a>(self, app_id, device_id, state_token, otp_token<font color="#909090">=None</font>, url_endpoint<font color="#909090">=None</font>, do_not_notify<font color="#909090">=False</font>)</dt><dd><tt>Verify&nbsp;a&nbsp;one-time&nbsp;password&nbsp;(OTP)&nbsp;value&nbsp;provided&nbsp;for&nbsp;a&nbsp;second&nbsp;factor&nbsp;when&nbsp;multi-factor&nbsp;authentication&nbsp;(MFA)&nbsp;is&nbsp;required&nbsp;for&nbsp;SAML&nbsp;authentication.<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;App&nbsp;ID&nbsp;of&nbsp;the&nbsp;app&nbsp;for&nbsp;which&nbsp;you&nbsp;want&nbsp;to&nbsp;generate&nbsp;a&nbsp;SAML&nbsp;token<br>
+:type&nbsp;app_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;devide_id:&nbsp;Provide&nbsp;the&nbsp;MFA&nbsp;device_id&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;subdomain:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;Provide&nbsp;the&nbsp;state_token&nbsp;associated&nbsp;with&nbsp;the&nbsp;MFA&nbsp;device_id&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;otp_token:&nbsp;Provide&nbsp;the&nbsp;OTP&nbsp;value&nbsp;for&nbsp;the&nbsp;MFA&nbsp;factor&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;otp_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;url_endpoint:&nbsp;Specify&nbsp;an&nbsp;url&nbsp;where&nbsp;return&nbsp;the&nbsp;response.<br>
+:type&nbsp;url_endpoint:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;do_not_notify:&nbsp;When&nbsp;verifying&nbsp;MFA&nbsp;via&nbsp;Protect&nbsp;Push,&nbsp;set&nbsp;this&nbsp;to&nbsp;true&nbsp;to&nbsp;stop&nbsp;additional&nbsp;push&nbsp;notifications&nbsp;being&nbsp;sent&nbsp;to&nbsp;the&nbsp;OneLogin&nbsp;Protect&nbsp;device<br>
+:type&nbsp;do_not_notify:&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;SAMLEndpointResponse&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;an&nbsp;encoded&nbsp;SAMLResponse<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;SAMLEndpointResponse<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/saml-assertions/verify-factor&nbsp;Verify&nbsp;Factor&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/saml-assertions/verify-factor</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_session_token_verified"><strong>get_session_token_verified</strong></a>(self, device_id, state_token, otp_token<font color="#909090">=None</font>, allowed_origin<font color="#909090">=''</font>, do_not_notify<font color="#909090">=False</font>)</dt><dd><tt>Verify&nbsp;a&nbsp;one-time&nbsp;password&nbsp;(OTP)&nbsp;value&nbsp;provided&nbsp;for&nbsp;multi-factor&nbsp;authentication&nbsp;(MFA).<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;Provide&nbsp;the&nbsp;MFA&nbsp;device_id&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;device_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;Provide&nbsp;the&nbsp;state_token&nbsp;associated&nbsp;with&nbsp;the&nbsp;MFA&nbsp;device_id&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;otp_token:&nbsp;Provide&nbsp;the&nbsp;OTP&nbsp;value&nbsp;for&nbsp;the&nbsp;MFA&nbsp;factor&nbsp;you&nbsp;are&nbsp;submitting&nbsp;for&nbsp;verification.<br>
+:type&nbsp;otp_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;allowed_origin:&nbsp;Required&nbsp;for&nbsp;CORS&nbsp;requests&nbsp;only.&nbsp;Set&nbsp;to&nbsp;the&nbsp;Origin&nbsp;URI&nbsp;from&nbsp;which&nbsp;you&nbsp;are&nbsp;allowed&nbsp;to&nbsp;send&nbsp;a&nbsp;request&nbsp;using&nbsp;CORS.<br>
+:type&nbsp;allowed_origin:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;do_not_notify:&nbsp;When&nbsp;verifying&nbsp;MFA&nbsp;via&nbsp;Protect&nbsp;Push,&nbsp;set&nbsp;this&nbsp;to&nbsp;true&nbsp;to&nbsp;stop&nbsp;additional&nbsp;push&nbsp;notifications&nbsp;being&nbsp;sent&nbsp;to&nbsp;the&nbsp;OneLogin&nbsp;Protect&nbsp;device.<br>
+:type&nbsp;do_not_notify:&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;session&nbsp;token<br>
+:return:&nbsp;return&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;SessionTokenInfo<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/verify-factor&nbsp;Verify&nbsp;Factor&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_smart_hook"><strong>get_smart_hook</strong></a>(self, smart_hook_id)</dt><dd><tt>Gets&nbsp;Smart&nbsp;Hook<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;smart_hook<br>
+:type&nbsp;smart_hook_id:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;requested&nbsp;smart_hook<br>
+:return:&nbsp;smart_hook<br>
+:rtype:&nbsp;SmartHook<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/smart-hooks/get-hook&nbsp;Get&nbsp;a&nbsp;Hook&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_smart_hook_logs"><strong>get_smart_hook_logs</strong></a>(self, smart_hook_id, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;smart&nbsp;hook&nbsp;logs.<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;Smart&nbsp;Hook.<br>
+:type&nbsp;smart_hook_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;smart&nbsp;hook&nbsp;logs&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;smart&nbsp;hook&nbsp;logs<br>
+:return:&nbsp;smart&nbsp;hook&nbsp;log&nbsp;list<br>
+:rtype:&nbsp;list[SmartHookLog]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/get-hook-logs&nbsp;Get&nbsp;Hook&nbsp;Logs&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_smart_hooks"><strong>get_smart_hooks</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;hooks.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;smart&nbsp;hooks&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;smart&nbsp;hooks<br>
+:return:&nbsp;smart&nbsp;hooks&nbsp;list<br>
+:rtype:&nbsp;list[SmartHook]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/list-hooks&nbsp;List&nbsp;Hooks&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_url"><strong>get_url</strong></a>(self, base, obj_id<font color="#909090">=None</font>, extra_id<font color="#909090">=None</font>, version_id<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-get_user"><strong>get_user</strong></a>(self, user_id)</dt><dd><tt>Gets&nbsp;User&nbsp;by&nbsp;ID.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;user&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;user<br>
+:rtype:&nbsp;User<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/get-user-by-id&nbsp;Get&nbsp;User&nbsp;by&nbsp;ID&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/users/get-user</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_user_apps"><strong>get_user_apps</strong></a>(self, user_id, ignore_visibility<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;apps&nbsp;accessible&nbsp;by&nbsp;a&nbsp;user,&nbsp;not&nbsp;including&nbsp;personal&nbsp;apps.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;ignore_visibility&nbsp;Defaults&nbsp;to&nbsp;`false`.&nbsp;When&nbsp;`true`&nbsp;will&nbsp;all&nbsp;apps&nbsp;that&nbsp;are&nbsp;assigned&nbsp;to&nbsp;a&nbsp;user&nbsp;regardless&nbsp;of&nbsp;their&nbsp;portal&nbsp;visibility&nbsp;setting.<br>
+:type&nbsp;ignore_visibility&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;apps&nbsp;user&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;App&nbsp;list&nbsp;of&nbsp;the&nbsp;user<br>
+:rtype:&nbsp;list[UserApp]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/get-apps-for-user&nbsp;Get&nbsp;Apps&nbsp;for&nbsp;a&nbsp;User&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/users/get-user-apps</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_user_roles"><strong>get_user_roles</strong></a>(self, user_id)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;role&nbsp;IDs&nbsp;that&nbsp;have&nbsp;been&nbsp;assigned&nbsp;to&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;role&nbsp;ids&nbsp;of&nbsp;the&nbsp;user&nbsp;identified&nbsp;by&nbsp;the&nbsp;id<br>
+:return:&nbsp;role&nbsp;ids<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/get-roles-for-user&nbsp;Get&nbsp;Roles&nbsp;for&nbsp;a&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_users"><strong>get_users</strong></a>(self, query_parameters<font color="#909090">=None</font>, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;User&nbsp;resources.<br>
+&nbsp;<br>
+:param&nbsp;query_parameters:&nbsp;Parameters&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;list<br>
+:type&nbsp;query_parameters:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;users&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;users<br>
+:return:&nbsp;users&nbsp;list<br>
+:rtype:&nbsp;list[User]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/get-users&nbsp;Get&nbsp;Users&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/users/list-users</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_users_assigned_to_privilege"><strong>get_users_assigned_to_privilege</strong></a>(self, privilege_id, max_results<font color="#909090">=None</font>)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;users&nbsp;assigned&nbsp;to&nbsp;a&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;max_results:&nbsp;Limit&nbsp;the&nbsp;number&nbsp;of&nbsp;users&nbsp;returned&nbsp;(optional)<br>
+:type&nbsp;max_results:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;users<br>
+:return:&nbsp;user_ids&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/get-users&nbsp;Get&nbsp;Assigned&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-get_version_id"><strong>get_version_id</strong></a>(self, base)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-is_expired"><strong>is_expired</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-lock_user"><strong>lock_user</strong></a>(self, user_id, minutes)</dt><dd><tt>Use&nbsp;this&nbsp;call&nbsp;to&nbsp;lock&nbsp;a&nbsp;user's&nbsp;account&nbsp;based&nbsp;on&nbsp;the&nbsp;policy&nbsp;assigned&nbsp;to<br>
+the&nbsp;user,&nbsp;for&nbsp;a&nbsp;specific&nbsp;time&nbsp;you&nbsp;define&nbsp;in&nbsp;the&nbsp;request,&nbsp;or&nbsp;until&nbsp;you<br>
+unlock&nbsp;it.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;be&nbsp;locked.<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;minutes:&nbsp;Set&nbsp;to&nbsp;the&nbsp;number&nbsp;of&nbsp;minutes&nbsp;for&nbsp;which&nbsp;you&nbsp;want&nbsp;to&nbsp;lock&nbsp;the&nbsp;user&nbsp;account.&nbsp;(0&nbsp;to&nbsp;delegate&nbsp;on&nbsp;policy)<br>
+:type&nbsp;minutes:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/lock-user-account&nbsp;Lock&nbsp;User&nbsp;Account&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-log_user_out"><strong>log_user_out</strong></a>(self, user_id)</dt><dd><tt>Log&nbsp;a&nbsp;user&nbsp;out&nbsp;of&nbsp;any&nbsp;and&nbsp;all&nbsp;sessions.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;be&nbsp;logged&nbsp;out<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/log-user-out&nbsp;Log&nbsp;User&nbsp;Out&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-mapping_sort"><strong>mapping_sort</strong></a>(self, mapping_ids)</dt><dd><tt>Update&nbsp;order&nbsp;of&nbsp;mappings<br>
+&nbsp;<br>
+:param&nbsp;mapping_ids:&nbsp;ordered&nbsp;list&nbsp;of&nbsp;mapping_ids<br>
+:type&nbsp;mapping_ids:&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;processed&nbsp;mapping&nbsp;ids<br>
+:return:&nbsp;mapping_id&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/bulk-sort&nbsp;Bulk&nbsp;Sort&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-prepare_token"><strong>prepare_token</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-process_login"><strong>process_login</strong></a>(self, url, headers, data)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-process_token_response"><strong>process_token_response</strong></a>(self, response)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-regenerate_token"><strong>regenerate_token</strong></a>(self)</dt><dd><tt>Refreshing&nbsp;tokens&nbsp;provides&nbsp;a&nbsp;new&nbsp;set&nbsp;of&nbsp;access&nbsp;and&nbsp;refresh&nbsp;tokens.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;refreshed&nbsp;OAuth&nbsp;Token&nbsp;info<br>
+:return:&nbsp;OAuth&nbsp;Token&nbsp;info<br>
+:rtype:&nbsp;OneLoginToken<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/oauth20-tokens/refresh-tokens&nbsp;Refresh&nbsp;Tokens&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_factor"><strong>remove_factor</strong></a>(self, user_id, device_id)</dt><dd><tt>Remove&nbsp;an&nbsp;enrolled&nbsp;factor&nbsp;from&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;The&nbsp;device_id&nbsp;of&nbsp;the&nbsp;MFA&nbsp;device.<br>
+:type&nbsp;device_id:&nbsp;integer<br>
+&nbsp;<br>
+:return:&nbsp;true&nbsp;if&nbsp;action&nbsp;succeed<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/remove-factor&nbsp;Remove&nbsp;a&nbsp;Factor&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/remove-factor</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_from_resource_operation"><strong>remove_from_resource_operation</strong></a>(self, url, ids, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-remove_role_admins"><strong>remove_role_admins</strong></a>(self, role_id, admin_ids)</dt><dd><tt>Remove&nbsp;admins&nbsp;from&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;admin_ids:&nbsp;List&nbsp;of&nbsp;admin&nbsp;ids<br>
+:type&nbsp;admin_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/remove-role-admins&nbsp;Remove&nbsp;Role&nbsp;Admins&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_role_from_privilege"><strong>remove_role_from_privilege</strong></a>(self, privilege_id, role_id)</dt><dd><tt>Removes&nbsp;one&nbsp;role&nbsp;from&nbsp;the&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;be&nbsp;removed.<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/remove-role&nbsp;Remove&nbsp;Role&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_role_from_user"><strong>remove_role_from_user</strong></a>(self, user_id, role_ids)</dt><dd><tt>Remove&nbsp;Role&nbsp;from&nbsp;User<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;role_ids:&nbsp;List&nbsp;of&nbsp;role&nbsp;ids&nbsp;to&nbsp;be&nbsp;removed<br>
+:type&nbsp;role_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/remove-role-from-user&nbsp;Remove&nbsp;Role&nbsp;from&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_role_users"><strong>remove_role_users</strong></a>(self, role_id, user_ids)</dt><dd><tt>Remove&nbsp;users&nbsp;from&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;user_ids:&nbsp;List&nbsp;of&nbsp;admin&nbsp;ids<br>
+:type&nbsp;user_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/remove-role-users&nbsp;Remove&nbsp;Role&nbsp;Users&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-remove_stored_token"><strong>remove_stored_token</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-remove_user_from_privilege"><strong>remove_user_from_privilege</strong></a>(self, privilege_id, user_id)</dt><dd><tt>Removes&nbsp;one&nbsp;user&nbsp;from&nbsp;the&nbsp;privilege.<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;be&nbsp;removed.<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/remove-user&nbsp;Remove&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-reset_email_settings"><strong>reset_email_settings</strong></a>(self)</dt><dd><tt>Reset&nbsp;Email&nbsp;Settings&nbsp;Config<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/reset-email-settings&nbsp;Reset&nbsp;Email&nbsp;Settings&nbsp;Config&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-retrieve_list"><strong>retrieve_list</strong></a>(self, url, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-retrieve_resource"><strong>retrieve_resource</strong></a>(self, resource_cls, url, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-retrieve_resource_list"><strong>retrieve_resource_list</strong></a>(self, resource_cls, url, params, index, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-retrieve_resources"><strong>retrieve_resources</strong></a>(self, resource_cls, url, query_parameters, max_results<font color="#909090">=None</font>, version_id<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-retrieve_saml_assertion"><strong>retrieve_saml_assertion</strong></a>(self, url, data, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-revoke_token"><strong>revoke_token</strong></a>(self)</dt><dd><tt>Revokes&nbsp;an&nbsp;access&nbsp;token&nbsp;and&nbsp;refresh&nbsp;token&nbsp;pair.<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/oauth20-tokens/revoke-tokens&nbsp;Revoke&nbsp;Tokens&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-send_invite_link"><strong>send_invite_link</strong></a>(self, email, personal_email<font color="#909090">=None</font>)</dt><dd><tt>Sends&nbsp;an&nbsp;invite&nbsp;link&nbsp;to&nbsp;a&nbsp;user&nbsp;that&nbsp;you&nbsp;have&nbsp;already&nbsp;created&nbsp;in&nbsp;your&nbsp;OneLogin&nbsp;account.<br>
+&nbsp;<br>
+:param&nbsp;email:&nbsp;Set&nbsp;to&nbsp;the&nbsp;email&nbsp;address&nbsp;of&nbsp;the&nbsp;user&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;send&nbsp;an&nbsp;invite&nbsp;link&nbsp;for.<br>
+:type&nbsp;email:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;personal_email:&nbsp;If&nbsp;you&nbsp;want&nbsp;to&nbsp;send&nbsp;the&nbsp;invite&nbsp;email&nbsp;to&nbsp;an&nbsp;email&nbsp;other&nbsp;than&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;provided&nbsp;in&nbsp;email,&nbsp;provide&nbsp;it&nbsp;here.&nbsp;The&nbsp;invite&nbsp;link&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sent&nbsp;to&nbsp;this&nbsp;address&nbsp;instead.<br>
+:type&nbsp;personal_email:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation<br>
+:return:&nbsp;True&nbsp;if&nbsp;the&nbsp;mail&nbsp;with&nbsp;the&nbsp;link&nbsp;was&nbsp;sent<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/invite-links/send-invite-link&nbsp;Send&nbsp;Invite&nbsp;Link&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_custom_attribute_to_user"><strong>set_custom_attribute_to_user</strong></a>(self, user_id, custom_attributes)</dt><dd><tt>Set&nbsp;Custom&nbsp;Attribute&nbsp;Value<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;custom_attributes:&nbsp;Provide&nbsp;one&nbsp;or&nbsp;more&nbsp;key&nbsp;value&nbsp;pairs&nbsp;composed&nbsp;of&nbsp;the&nbsp;custom&nbsp;attribute&nbsp;field&nbsp;shortname&nbsp;and&nbsp;the&nbsp;value&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;set&nbsp;the&nbsp;field&nbsp;to.<br>
+:type&nbsp;custom_attributes:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/set-custom-attribute&nbsp;Set&nbsp;Custom&nbsp;Attribute&nbsp;Value&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_operation"><strong>set_operation</strong></a>(self, url, ids, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-set_password_using_clear_text"><strong>set_password_using_clear_text</strong></a>(self, user_id, password, password_confirmation, validate_policy<font color="#909090">=False</font>)</dt><dd><tt>Sets&nbsp;Password&nbsp;by&nbsp;ID&nbsp;Using&nbsp;Cleartext<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;password:&nbsp;Set&nbsp;to&nbsp;the&nbsp;password&nbsp;value&nbsp;using&nbsp;cleartext.<br>
+:type&nbsp;password:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;password_confirmation:&nbsp;Ensure&nbsp;that&nbsp;this&nbsp;value&nbsp;matches&nbsp;the&nbsp;password&nbsp;value&nbsp;exactly.<br>
+:type&nbsp;password_confirmation:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;validate_policy:&nbsp;Defaults&nbsp;to&nbsp;false.&nbsp;This&nbsp;will&nbsp;validate&nbsp;the&nbsp;password&nbsp;against&nbsp;the&nbsp;users&nbsp;OneLogin&nbsp;password&nbsp;policy..<br>
+:type&nbsp;validate_policy:&nbsp;boolean<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/set-password-in-cleartext&nbsp;Set&nbsp;Password&nbsp;by&nbsp;ID&nbsp;Using&nbsp;Cleartext&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_password_using_hash_salt"><strong>set_password_using_hash_salt</strong></a>(self, user_id, password, password_confirmation, password_algorithm, password_salt<font color="#909090">=None</font>)</dt><dd><tt>Set&nbsp;Password&nbsp;by&nbsp;ID&nbsp;Using&nbsp;Salt&nbsp;and&nbsp;SHA-256<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;password:&nbsp;Set&nbsp;to&nbsp;the&nbsp;password&nbsp;value&nbsp;using&nbsp;a&nbsp;SHA-256-encoded&nbsp;value.<br>
+:type&nbsp;password:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;password_confirmation:&nbsp;Ensure&nbsp;that&nbsp;this&nbsp;value&nbsp;matches&nbsp;the&nbsp;password&nbsp;value&nbsp;exactly.<br>
+:type&nbsp;password_confirmation:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;password_algorithm:&nbsp;Set&nbsp;to&nbsp;salt+sha256.<br>
+:type&nbsp;password_algorithm:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;password_salt:&nbsp;(Optional)&nbsp;To&nbsp;provide&nbsp;your&nbsp;own&nbsp;salt&nbsp;value.<br>
+:type&nbsp;password_salt:&nbsp;string<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/set-password-using-sha-256&nbsp;Set&nbsp;Password&nbsp;by&nbsp;ID&nbsp;Using&nbsp;Salt&nbsp;and&nbsp;SHA-256&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_role_apps"><strong>set_role_apps</strong></a>(self, role_id, app_ids, max_results<font color="#909090">=None</font>)</dt><dd><tt>Assign&nbsp;applications&nbsp;to&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_ids:&nbsp;List&nbsp;of&nbsp;app&nbsp;ids<br>
+:type&nbsp;app_ids:&nbsp;integer&nbsp;array<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;App&nbsp;assigned&nbsp;to&nbsp;a&nbsp;role.<br>
+:return:&nbsp;app&nbsp;id&nbsp;list<br>
+:rtype:&nbsp;list[int]<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/set-role-apps&nbsp;Set&nbsp;Role&nbsp;Apps&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_state_to_user"><strong>set_state_to_user</strong></a>(self, user_id, state)</dt><dd><tt>Set&nbsp;the&nbsp;State&nbsp;for&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;state:&nbsp;Set&nbsp;to&nbsp;the&nbsp;state&nbsp;value.&nbsp;Valid&nbsp;values:&nbsp;0-3<br>
+:type&nbsp;state:&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/set-state&nbsp;Set&nbsp;User&nbsp;State&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-set_timeout"><strong>set_timeout</strong></a>(self, timeout<font color="#909090">=None</font>)</dt><dd><tt>Changes&nbsp;the&nbsp;timeout&nbsp;used&nbsp;when&nbsp;placing&nbsp;requests&nbsp;with&nbsp;the&nbsp;execute_call&nbsp;method<br>
+:param&nbsp;timeout:&nbsp;a&nbsp;request&nbsp;timeout<br>
+See&nbsp;<a href="http://docs.python-requests.org/en/master/user/advanced/#timeouts">http://docs.python-requests.org/en/master/user/advanced/#timeouts</a></tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-submit_operation"><strong>submit_operation</strong></a>(self, url, data)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-track_event"><strong>track_event</strong></a>(self, track_event_params)</dt><dd><tt>Tracks&nbsp;an&nbsp;Event<br>
+&nbsp;<br>
+:param&nbsp;track_event_params:&nbsp;Event&nbsp;data&nbsp;(verb,&nbsp;ip,&nbsp;user_agent,&nbsp;user[id,&nbsp;name,&nbsp;authenticated],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source[id,name],&nbsp;session[id],&nbsp;device[id],&nbsp;fp,&nbsp;published)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&nbsp;id&nbsp;data&nbsp;needs&nbsp;to&nbsp;be&nbsp;in&nbsp;the&nbsp;format:&nbsp;{instance&nbsp;region}_{OneLogin&nbsp;User&nbsp;Id}<br>
+:type&nbsp;track_event_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/train&nbsp;Track&nbsp;an&nbsp;Event&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_app"><strong>update_app</strong></a>(self, app_id, app_params)</dt><dd><tt>Updates&nbsp;an&nbsp;app<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_params:&nbsp;App&nbsp;data&nbsp;(connector_id,&nbsp;name,&nbsp;description,&nbsp;visible,&nbsp;policy_id,&nbsp;configuration,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tab_id,&nbsp;visible,&nbsp;brand_id,&nbsp;role_ids,&nbsp;notes)<br>
+:type&nbsp;app_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;app<br>
+:return:&nbsp;app<br>
+:rtype:&nbsp;OneLoginApp<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/apps/update-app&nbsp;Update&nbsp;an&nbsp;App&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_app_rule"><strong>update_app_rule</strong></a>(self, app_id, app_rule_id, app_rule_params)</dt><dd><tt>Updates&nbsp;an&nbsp;app&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;app_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app<br>
+:type&nbsp;app_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;app&nbsp;rule<br>
+:type&nbsp;app_rule_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;app_rule_params:&nbsp;App&nbsp;Rule&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;match,&nbsp;position,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conditions[source,&nbsp;operator,&nbsp;value],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions[action,&nbsp;value,&nbsp;expression,scriplet,&nbsp;macro])<br>
+:type&nbsp;app_rule_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;app&nbsp;rule<br>
+:return:&nbsp;app_rule<br>
+:rtype:&nbsp;AppRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/app-rules/update-rule&nbsp;Update&nbsp;App&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_brand"><strong>update_brand</strong></a>(self, brand_id, brand_params)</dt><dd><tt>Updates&nbsp;accound&nbsp;brand<br>
+&nbsp;<br>
+:param&nbsp;brand_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;brand<br>
+:type&nbsp;brand_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;brand_params:&nbsp;Brand&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;custom_support_enabled,&nbsp;custom_color,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;custom_accent_color,&nbsp;custom_masking_color,&nbsp;custom_masking_opacity,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enable_custom_label_for_login_screen,&nbsp;custom_label_text_for_login_screen,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login_instruction_title,&nbsp;login_instruction,&nbsp;hide_onelogin_footer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mfa_enrollment_message,&nbsp;background,&nbsp;logo)<br>
+:type&nbsp;brand_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;brand<br>
+:return:&nbsp;brand<br>
+:rtype:&nbsp;Brand<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/update-account-brand&nbsp;Update&nbsp;Account&nbsp;Brand&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_email_settings"><strong>update_email_settings</strong></a>(self, email_settings)</dt><dd><tt>Update&nbsp;Email&nbsp;Settings&nbsp;Config<br>
+&nbsp;<br>
+Returns&nbsp;if&nbsp;the&nbsp;action&nbsp;succeed<br>
+:return:&nbsp;true&nbsp;if&nbsp;success<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/branding/update-email-settings&nbsp;Update&nbsp;Email&nbsp;Settings&nbsp;Config&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_env_var"><strong>update_env_var</strong></a>(self, env_var_id, value)</dt><dd><tt>Updates&nbsp;an&nbsp;environment&nbsp;variable<br>
+&nbsp;<br>
+:param&nbsp;env_var_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;environment&nbsp;variable<br>
+:type&nbsp;env_var_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;env_var_params:&nbsp;Environment&nbsp;variable&nbsp;data&nbsp;(name,&nbsp;value)<br>
+:type&nbsp;env_var_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;environment&nbsp;variable<br>
+:return:&nbsp;environment&nbsp;variable<br>
+:rtype:&nbsp;SmartHookEnv<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/update-environment-variable&nbsp;Update&nbsp;Environment&nbsp;Variable&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_mapping"><strong>update_mapping</strong></a>(self, mapping_id, mapping_params)</dt><dd><tt>Updates&nbsp;Mapping<br>
+&nbsp;<br>
+:param&nbsp;mapping_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;mapping<br>
+:type&nbsp;mapping_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;mapping_params:&nbsp;Mapping&nbsp;data&nbsp;(name,&nbsp;enabled,&nbsp;match,&nbsp;position<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conditions[source,&nbsp;operator,value],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions[action,&nbsp;value])<br>
+:type&nbsp;mapping_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;mapping<br>
+:return:&nbsp;mapping<br>
+:rtype:&nbsp;Mapping<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;mapping<br>
+:return:&nbsp;mapping<br>
+:rtype:&nbsp;Mapping<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/user-mappings/update-mapping&nbsp;Update&nbsp;Mapping&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_operation"><strong>update_operation</strong></a>(self, url, data)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-update_privilege"><strong>update_privilege</strong></a>(self, privilege_id, name, version, statements)</dt><dd><tt>Updates&nbsp;a&nbsp;Privilege<br>
+&nbsp;<br>
+:param&nbsp;privilege_id:&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;privilege&nbsp;you&nbsp;want&nbsp;to&nbsp;update.<br>
+:type&nbsp;privilege_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;privilege.<br>
+:type&nbsp;name:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;version:&nbsp;The&nbsp;version&nbsp;for&nbsp;the&nbsp;privilege&nbsp;schema.&nbsp;Set&nbsp;to&nbsp;2018-05-18.<br>
+:type&nbsp;version:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;statements:&nbsp;A&nbsp;list&nbsp;of&nbsp;statements.&nbsp;Statement&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;or&nbsp;a&nbsp;dict&nbsp;with&nbsp;the&nbsp;keys&nbsp;Effect,&nbsp;Action&nbsp;and&nbsp;Scope<br>
+:type&nbsp;statements:&nbsp;list[Statement]&nbsp;or&nbsp;list[dict]<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;privilege<br>
+:return:&nbsp;privilege<br>
+:rtype:&nbsp;Privilege<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/privileges/update-privilege&nbsp;Update&nbsp;Privilege&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_resource"><strong>update_resource</strong></a>(self, resource_cls, url, data, query_params, version_id)</dt></dl>
+
+<dl><dt><a name="OneLoginClient-update_risk_rule"><strong>update_risk_rule</strong></a>(self, risk_rule_id, risk_rule_params)</dt><dd><tt>Updates&nbsp;a&nbsp;risk&nbsp;rule<br>
+&nbsp;<br>
+:param&nbsp;risk_rule_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;risk&nbsp;rule<br>
+:type&nbsp;risk_rule_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;risk_rule_params:&nbsp;Risk&nbsp;Rule&nbsp;data&nbsp;(name,&nbsp;type,&nbsp;target,&nbsp;filters,&nbsp;source)<br>
+:type&nbsp;risk_rule_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;risk&nbsp;rule<br>
+:return:&nbsp;risk_rule<br>
+:rtype:&nbsp;RiskRule<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/vigilance/update-rule&nbsp;Update&nbsp;a&nbsp;Rule&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_role"><strong>update_role</strong></a>(self, role_id, role_params)</dt><dd><tt>Updates&nbsp;a&nbsp;role<br>
+&nbsp;<br>
+:param&nbsp;role_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;role<br>
+:type&nbsp;role_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;role_params:&nbsp;Role&nbsp;data&nbsp;(name)<br>
+:type&nbsp;role_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;role&nbsp;id&nbsp;of&nbsp;the&nbsp;modified&nbsp;role<br>
+:return:&nbsp;role_id<br>
+:rtype:&nbsp;int<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/roles/update-role&nbsp;Update&nbsp;Role&nbsp;by&nbsp;ID&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_smart_hook"><strong>update_smart_hook</strong></a>(self, smart_hook_id, smart_hook_params)</dt><dd><tt>Updates&nbsp;a&nbsp;hook<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;smart&nbsp;hook<br>
+:type&nbsp;smart_hook_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;smart_hook_params:&nbsp;Smart&nbsp;Hook&nbsp;data&nbsp;(type,&nbsp;disabled,&nbsp;timeout,&nbsp;env_vars,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runtime,&nbsp;context_version,&nbsp;retries,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;risk_enabled,&nbsp;mfa_device_info_enabled,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location_enabled,&nbsp;packages,&nbsp;function)<br>
+:type&nbsp;smart_hook_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;hook<br>
+:return:&nbsp;smart_hook<br>
+:rtype:&nbsp;SmartHook<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/hooks/update-hook&nbsp;Update&nbsp;a&nbsp;Hook&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-update_user"><strong>update_user</strong></a>(self, user_id, user_params, mappings<font color="#909090">=None</font>, validate_policy<font color="#909090">=None</font>)</dt><dd><tt>Updates&nbsp;an&nbsp;user<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Id&nbsp;of&nbsp;the&nbsp;user<br>
+:type&nbsp;user_id:&nbsp;int<br>
+&nbsp;<br>
+:param&nbsp;user_params:&nbsp;User&nbsp;data&nbsp;(firstname,&nbsp;lastname,&nbsp;email,&nbsp;username,&nbsp;company,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;department,&nbsp;directory_id,&nbsp;distinguished_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;external_id,&nbsp;group_id,&nbsp;invalid_login_attempts,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;locale_code,&nbsp;manager_ad_id,&nbsp;member_of,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;openid_name,&nbsp;phone,&nbsp;samaccountname,&nbsp;title,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userprincipalname)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2&nbsp;(password_confirmation,&nbsp;password_algorithm,&nbsp;salt,&nbsp;role_ids<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state,&nbsp;status,&nbsp;trusted_idp_id)<br>
+:type&nbsp;user_params:&nbsp;dict<br>
+&nbsp;<br>
+:param&nbsp;mappings:&nbsp;Controls&nbsp;how&nbsp;mappings&nbsp;will&nbsp;be&nbsp;applied&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;creation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[async,&nbsp;sync,&nbsp;disabled]<br>
+:type&nbsp;mappings:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;validate_policy:&nbsp;Validate&nbsp;password&nbsp;against&nbsp;user&nbsp;policy?<br>
+:type&nbsp;validate_policy:&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;modified&nbsp;user<br>
+:return:&nbsp;user<br>
+:rtype:&nbsp;User<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/users/update-user&nbsp;Update&nbsp;User&nbsp;by&nbsp;ID&nbsp;documentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://developers.onelogin.com/api-docs/2/users/update-user</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-validate_user"><strong>validate_user</strong></a>(self, validate_user_params)</dt><dd><tt>Validates&nbsp;a&nbsp;User<br>
+&nbsp;<br>
+:param&nbsp;validate_user_params:&nbsp;Smart&nbsp;MFA&nbsp;User&nbsp;data&nbsp;(user_identifier,&nbsp;email,&nbsp;phone,&nbsp;context,&nbsp;risk_threshold,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname,&nbsp;lastname,&nbsp;expires_in)<br>
+:type&nbsp;validate_user_params:&nbsp;dict<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;mfa&nbsp;validation&nbsp;response<br>
+:return:&nbsp;smart_mfa<br>
+:rtype:&nbsp;SmartMFA<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/smart-mfa/validate-user&nbsp;Validate&nbsp;a&nbsp;User&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_enroll_factor_otp"><strong>verify_enroll_factor_otp</strong></a>(self, user_id, registration_id, otp)</dt><dd><tt>Verify&nbsp;enrollment&nbsp;for&nbsp;OneLogin&nbsp;SMS,&nbsp;OneLogin&nbsp;Email,&nbsp;OneLogin&nbsp;Protect&nbsp;and&nbsp;Authenticator&nbsp;authentication&nbsp;factors.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;registration_id:&nbsp;uuid&nbsp;of&nbsp;the&nbsp;registration&nbsp;process&nbsp;(enroll&nbsp;factor)<br>
+:type&nbsp;registration_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;otp:&nbsp;One-Time-Password<br>
+:type&nbsp;otp:&nbsp;string<br>
+&nbsp;<br>
+&nbsp;<br>
+:return:&nbsp;Enrollment&nbsp;status<br>
+:rtype:&nbsp;MFACheckStatus<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/enroll-factor-verify-otp&nbsp;Verify&nbsp;Enrollment&nbsp;of&nbsp;Authentication&nbsp;Factors&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_enroll_factor_poll"><strong>verify_enroll_factor_poll</strong></a>(self, user_id, registration_id)</dt><dd><tt>Verify&nbsp;enrollment&nbsp;for&nbsp;OneLogin&nbsp;Voice&nbsp;&amp;&nbsp;Protect&nbsp;Push&nbsp;authentication&nbsp;factors.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;registration_id:&nbsp;uuid&nbsp;of&nbsp;the&nbsp;registration&nbsp;process&nbsp;(enroll&nbsp;factor)<br>
+:type&nbsp;registration_id:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;Enrollment&nbsp;status<br>
+:rtype:&nbsp;MFACheckStatus<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/enroll-factor-verify-poll&nbsp;Verify&nbsp;Enrollment&nbsp;of&nbsp;OneLogin&nbsp;Voice&nbsp;&amp;&nbsp;Protect&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_factor"><strong>verify_factor</strong></a>(self, user_id, device_id, otp_token<font color="#909090">=None</font>, state_token<font color="#909090">=None</font>)</dt><dd><tt>Authenticates&nbsp;a&nbsp;one-time&nbsp;password&nbsp;(OTP)&nbsp;code&nbsp;provided&nbsp;by&nbsp;a&nbsp;multifactor&nbsp;authentication&nbsp;(MFA)&nbsp;device.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;device_id&nbsp;of&nbsp;the&nbsp;MFA&nbsp;device.<br>
+:type&nbsp;device_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;otp_token:&nbsp;OTP&nbsp;code&nbsp;provided&nbsp;by&nbsp;the&nbsp;device&nbsp;or&nbsp;SMS&nbsp;message&nbsp;sent&nbsp;to&nbsp;user.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;a&nbsp;device&nbsp;like&nbsp;OneLogin&nbsp;Protect&nbsp;that&nbsp;supports&nbsp;Push&nbsp;has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;been&nbsp;used&nbsp;you&nbsp;do&nbsp;not&nbsp;need&nbsp;to&nbsp;provide&nbsp;the&nbsp;otp_token.<br>
+:type&nbsp;otp_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;The&nbsp;state_token&nbsp;is&nbsp;returned&nbsp;after&nbsp;a&nbsp;successful&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;Enroll&nbsp;a&nbsp;Factor&nbsp;or&nbsp;Activate&nbsp;a&nbsp;Factor.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;be&nbsp;provided&nbsp;if&nbsp;the&nbsp;needs_trigger&nbsp;attribute&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;proceeding&nbsp;calls&nbsp;is&nbsp;set&nbsp;to&nbsp;true.<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;true&nbsp;if&nbsp;action&nbsp;succeed<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/1/multi-factor-authentication/verify-factor&nbsp;Verify&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_factor_otp"><strong>verify_factor_otp</strong></a>(self, user_id, verification_id, otp, device_id<font color="#909090">=None</font>)</dt><dd><tt>Verify&nbsp;an&nbsp;OTP&nbsp;code&nbsp;provided&nbsp;by&nbsp;SMS,&nbsp;Email,&nbsp;OneLogin&nbsp;Protect&nbsp;or&nbsp;Authenticator<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;verification_id:&nbsp;uuid&nbsp;of&nbsp;the&nbsp;verification&nbsp;process&nbsp;(activate&nbsp;factor)<br>
+:type&nbsp;verification_id:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;otp:&nbsp;One-Time-Password<br>
+:type&nbsp;otp:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;device_id:&nbsp;The&nbsp;device_id&nbsp;of&nbsp;the&nbsp;enrolled&nbsp;factors&nbsp;(No&nbsp;required&nbsp;on&nbsp;OL&nbsp;SMS&nbsp;and&nbsp;OL&nbsp;Email)<br>
+:type&nbsp;device_id:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;Enrollment&nbsp;status<br>
+:rtype:&nbsp;MFACheckStatus<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/verify-factor&nbsp;Verify&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_factor_poll"><strong>verify_factor_poll</strong></a>(self, user_id, verification_id)</dt><dd><tt>Verify&nbsp;completion&nbsp;of&nbsp;OneLogin&nbsp;Push&nbsp;or&nbsp;OneLogin&nbsp;Voice&nbsp;factors.<br>
+&nbsp;<br>
+:param&nbsp;user_id:&nbsp;Set&nbsp;to&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;user.<br>
+:type&nbsp;user_id:&nbsp;integer<br>
+&nbsp;<br>
+:param&nbsp;verification_id:&nbsp;uuid&nbsp;of&nbsp;the&nbsp;verification&nbsp;process&nbsp;(activate&nbsp;factor)<br>
+:type&nbsp;verification_id:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;Enrollment&nbsp;status<br>
+:rtype:&nbsp;MFACheckStatus<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/multi-factor-authentication/verify-factor-poll&nbsp;Verify&nbsp;an&nbsp;Authentication&nbsp;Factor&nbsp;documentation</tt></dd></dl>
+
+<dl><dt><a name="OneLoginClient-verify_token"><strong>verify_token</strong></a>(self, state_token, otp_token)</dt><dd><tt>Verify&nbsp;MFA&nbsp;Token<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;The&nbsp;state_token&nbsp;value&nbsp;returned&nbsp;from&nbsp;the&nbsp;Validate&nbsp;a&nbsp;User&nbsp;endpoint<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;state_token:&nbsp;The&nbsp;MFA&nbsp;token&nbsp;that&nbsp;was&nbsp;sent&nbsp;to&nbsp;the&nbsp;user&nbsp;via&nbsp;Email&nbsp;or&nbsp;SMS&nbsp;using&nbsp;the&nbsp;Validate&nbsp;a&nbsp;User&nbsp;endpoint<br>
+:type&nbsp;state_token:&nbsp;string<br>
+&nbsp;<br>
+:return:&nbsp;true&nbsp;if&nbsp;action&nbsp;succeed<br>
+:rtype:&nbsp;bool<br>
+&nbsp;<br>
+See&nbsp;https://developers.onelogin.com/api-docs/2/smart-mfa/verify-token&nbsp;Verify&nbsp;MFA&nbsp;Token&nbsp;documentation</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>CUSTOM_USER_AGENT</strong> = 'onelogin-python-sdk 2.0.0'</dl>
+
+<dl><dt><strong>api_configuration</strong> = {'app': 1, 'app_rule': 2, 'assertion': 2, 'branding': 2, 'connector': 2, 'custom_login': 1, 'event': 1, 'group': 1, 'invite': 1, 'mfa': 2, ...}</dl>
+
+<dl><dt><strong>client_id</strong> = None</dl>
+
+<dl><dt><strong>client_secret</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__version__</strong> = '2.0.0'</td></tr></table>
+</body></html>
